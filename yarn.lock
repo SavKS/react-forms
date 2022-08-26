@@ -63,9 +63,9 @@
   integrity sha512-+rgBkKOVsRf6S2QA5azzn5s+rNKUKwc+upY8mTiugwdBqUaW6nNjZCpgzL/csWfvqhAV9nw4wJmI5dQj5/HGYg==
 
 "@savks/react-helpers@^1.0.0":
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/@savks/react-helpers/-/react-helpers-1.0.0.tgz#20f95f0079aba01fff4ddad7a6999716b80f4944"
-  integrity sha512-vux7P5cRJZAgQUYKNH/0f7IOu0jYQq72RpeoW2K3RQh8HKmRTvy8TmtsFkgvOOUj+ACuPISc7RdfpvtCJdfZvQ==
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@savks/react-helpers/-/react-helpers-1.0.1.tgz#704ce9d8eaecf81e9a8676b2daf43c547f8835be"
+  integrity sha512-6yFv8Xe2CxHveWJvVqVYGK58pv57AQzfVfhpGWtPBhrUVTIVoRTfqtc4KBRzFPKR1oIiXBC1yltbFCH+xLAcBg==
   dependencies:
     is-promise "^4.0.0"
     uuid "^8.3.2"
