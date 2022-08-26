@@ -1,0 +1,40 @@
+{
+    "name": "@savks/react-forms",
+    "version": "1.0.0",
+    "description": "React forms",
+    "license": "MIT",
+    "author": "Savks",
+    "sideEffects": false,
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc",
+        "prepack": "yarn build"
+    },
+    "dependencies": {
+        "immer": "^9.0.13",
+        "is-plain-obj": "^4.1.0",
+        "wildcard-match": "^5.1.2"
+    },
+    "devDependencies": {
+        "@savks/not-need-lodash": "^1.1.6",
+        "@savks/react-helpers": "^1.0.0",
+        "@types/react": "^17.0.9",
+        "@typescript-eslint/eslint-plugin": "^5.2.0",
+        "@typescript-eslint/parser": "^5.2.0",
+        "eslint": "^8.1.0",
+        "eslint-config-crockford": "^2.0.0",
+        "eslint-plugin-react": "^7.29.4",
+        "eslint-plugin-react-hooks": "^4.5.0",
+        "eslint-plugin-you-dont-need-lodash-underscore": "^6.12.0",
+        "typescript": "^4.4.4"
+    },
+    "peerDependencies": {
+        "@savks/not-need-lodash": "^1.1.6",
+        "@savks/react-helpers": "^1.0.0",
+        "react": "^17.0.0"
+    },
+    "volta": {
+        "node": "17.9.0"
+    }
+}
