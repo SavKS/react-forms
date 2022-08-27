@@ -1,6 +1,6 @@
 {
     "name": "@savks/react-forms",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "React forms",
     "license": "MIT",
     "author": "Savks",
@@ -36,5 +36,10 @@
     },
     "volta": {
         "node": "17.9.0"
-    }
+    },
+    "files": [
+        "dist/*.js",
+        "dist/*.d.ts",
+        "dist/*.js.map"
+    ]
 }
