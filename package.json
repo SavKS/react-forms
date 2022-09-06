@@ -38,8 +38,6 @@
         "node": "17.9.0"
     },
     "files": [
-        "dist/*.js",
-        "dist/*.d.ts",
-        "dist/*.js.map"
+        "dist/**/*"
     ]
 }
