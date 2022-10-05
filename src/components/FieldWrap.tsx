@@ -1,47 +1,37 @@
-import { useMemoCompare } from '@savks/react-helpers';
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback } from 'react';
+import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors';
 import useContextualForm from '../hooks/useContextualForm';
 import useFieldPath from '../hooks/useFieldPath';
 import useFormData from '../hooks/useFormData';
-import useFormFormattedErrors from '../hooks/useFormFormattedErrors';
 
-export type FieldWrapProps<InputValue, OutputValue = InputValue> = {
+export type NewValue<T> =
+    | T
+    | ((value: T) => T)
+    | undefined
+    | null;
+
+type Props<InputValue, OutputValue = InputValue> = {
     path: string,
     typeDefaultValue?: InputValue,
     errors?: string | string[],
     children: (payload: {
         value: InputValue,
         error?: string,
-        change: (value: OutputValue) => void,
+        change: (value: NewValue<OutputValue>) => void,
         clear: () => void
     }) => void
 };
 
 export default function FieldWrap<InputValue, OutputValue = InputValue>(
-    props: FieldWrapProps<InputValue, OutputValue>
+    props: Props<InputValue, OutputValue>
 ) {
     const form = useContextualForm();
 
     const normalizedPath = useFieldPath(props.path);
 
-    const errorPaths = useMemo(() => {
-        if (!props.errors) {
-            return [ props.path ];
-        }
+    const formattedErrors = useFormattedErrors(props.errors ?? props.path);
 
-        if (typeof props.errors === 'string') {
-            return [ props.errors ];
-        }
-
-        return props.errors;
-    }, [ props.errors, props.path ]);
-
-    const formattedErrors = useFormFormattedErrors(
-        form,
-        useMemoCompare(() => errorPaths, [ errorPaths ])
-    );
-
-    const change = useCallback((newValue: OutputValue) => {
+    const change = useCallback((newValue: NewValue<OutputValue>) => {
         if (newValue === null || newValue === undefined) {
             form.delete(normalizedPath);
         } else {

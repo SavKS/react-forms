@@ -19,7 +19,7 @@
     "devDependencies": {
         "@savks/not-need-lodash": "^1.1.6",
         "@savks/react-helpers": "^1.0.0",
-        "@types/react": "^17.0.9",
+        "@types/react": "^18.0.9",
         "@typescript-eslint/eslint-plugin": "^5.2.0",
         "@typescript-eslint/parser": "^5.2.0",
         "eslint": "^8.1.0",
@@ -32,10 +32,10 @@
     "peerDependencies": {
         "@savks/not-need-lodash": "^1.1.6",
         "@savks/react-helpers": "^1.0.0",
-        "react": "^17.0.0"
+        "react": "^18.2.0"
     },
     "volta": {
-        "node": "17.9.0"
+        "node": "18.6.0"
     },
     "files": [
         "dist/**/*"

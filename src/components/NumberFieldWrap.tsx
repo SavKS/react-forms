@@ -1,6 +1,62 @@
-import React from 'react';
-import FieldWrap, { FieldWrapProps } from './FieldWrap';
+import React, { ChangeEvent, useCallback } from 'react';
+import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors';
+import useContextualForm from '../hooks/useContextualForm';
+import useFieldPath from '../hooks/useFieldPath';
+import useFormData from '../hooks/useFormData';
 
-export default function NumberFieldWrap(props: FieldWrapProps<number | undefined>) {
-    return <FieldWrap{ ...props } typeDefaultValue={ undefined }></FieldWrap>;
+export type NewValue =
+    | number
+    | undefined
+    | null
+    | ChangeEvent<HTMLInputElement>;
+
+type Props = {
+    path: string,
+    errors?: string | string[],
+    children: (payload: {
+        value: number | undefined,
+        error?: string,
+        change: (value: NewValue) => void,
+        clear: () => void
+    }) => void
+}
+
+export default function NumberFieldWrap(props: Props) {
+    const form = useContextualForm();
+
+    const normalizedPath = useFieldPath(props.path);
+
+    const formattedErrors = useFormattedErrors(props.errors ?? props.path);
+
+    const change = useCallback((newValue: NewValue) => {
+        if (newValue === null || newValue === undefined) {
+            form.delete(normalizedPath);
+        } else {
+            if (typeof newValue === 'number') {
+                form.change(normalizedPath, newValue);
+            } else {
+                form.change(normalizedPath, newValue.currentTarget.value);
+            }
+
+        }
+    }, [ form, normalizedPath ]);
+
+    const clear = useCallback(() => {
+        form.delete(normalizedPath);
+    }, [ form, normalizedPath ]);
+
+    const value = useFormData(form, props.path);
+
+    return (
+        <>
+            {
+                props.children({
+                    value: value ?? undefined,
+                    error: formattedErrors,
+                    change,
+                    clear
+                })
+            }
+        </>
+    );
 }
