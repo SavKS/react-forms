@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 import Form from '../Form';
 
 export default function useFormIsProcessing(form: Form) {
-    const [ isProcessing, setIsProcessing ] = useState(
-        () => form.isProcessing
-    );
-
-    useEffect(
-        () => form.onIsProcessingChange((newValue) => {
-            setIsProcessing(newValue);
-        }),
+    const getIsProcessing = useCallback(
+        () => form.isProcessing,
         [ form ]
     );
 
-    return isProcessing;
+    return useSyncExternalStore(
+        form.onIsProcessingChange,
+        getIsProcessing,
+        getIsProcessing
+    );
 }

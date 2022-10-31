@@ -1,5 +1,6 @@
 import isEqual from '@savks/not-need-lodash/isEqual';
-import { useContext, useEffect, useState } from 'react';
+import { useCallback, useContext } from 'react';
+import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector';
 import { ScopeContext } from '../contexts/ScopeContext';
 import Form from '../Form';
 import { ValidationErrors } from '../types';
@@ -15,26 +16,19 @@ const resolveErrors = (errors: ValidationErrors, scope?: string, names?: string 
 export default function useFormErrors(form: Form, names?: string | string[]) {
     const scope = useContext(ScopeContext);
 
-    const [ errors, setErrors ] = useState(
-        () => resolveErrors(form.errors, scope, names)
+    const getErrors = useCallback(
+        () => form.errors,
+        [ form ]
     );
 
-    useEffect(
-        () => form.onErrorsChange((errors) => {
-            setErrors(
-                oldErrors => {
-                    const newErrors = resolveErrors(errors, scope, names);
-
-                    if (isEqual(oldErrors, newErrors)) {
-                        return oldErrors;
-                    }
-
-                    return newErrors;
-                }
-            );
-        }),
-        [ form, errors, names, scope ]
+    return useSyncExternalStoreWithSelector(
+        form.onErrorsChange,
+        getErrors,
+        getErrors,
+        useCallback(
+            errors => resolveErrors(errors, scope, names),
+            [scope, names]
+        ),
+        isEqual
     );
-
-    return errors;
 }

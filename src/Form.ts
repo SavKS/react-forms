@@ -88,7 +88,7 @@ class Form {
         return this.#isModified;
     }
 
-    onDataChange(callback: SubscriberTypes['data']) {
+    onDataChange = (callback: SubscriberTypes['data']) => {
         this.#subscribers.data.set(callback, callback);
 
         return () => {
@@ -96,7 +96,7 @@ class Form {
         };
     }
 
-    onIsLockedChange(callback: SubscriberTypes['isLocked']) {
+    onIsLockedChange = (callback: SubscriberTypes['isLocked']) => {
         this.#subscribers.isLocked.set(callback, callback);
 
         return () => {
@@ -104,7 +104,7 @@ class Form {
         };
     }
 
-    onIsProcessingChange(callback: SubscriberTypes['isProcessing']) {
+    onIsProcessingChange = (callback: SubscriberTypes['isProcessing']) => {
         this.#subscribers.isProcessing.set(callback, callback);
 
         return () => {
@@ -112,7 +112,7 @@ class Form {
         };
     }
 
-    onIsModifiedChange(callback: SubscriberTypes['isModified']) {
+    onIsModifiedChange = (callback: SubscriberTypes['isModified']) => {
         this.#subscribers.isModified.set(callback, callback);
 
         return () => {
@@ -120,7 +120,7 @@ class Form {
         };
     }
 
-    onErrorsChange(callback: SubscriberTypes['errors'], isImmediate = false) {
+    onErrorsChange = (callback: SubscriberTypes['errors'], isImmediate = false) => {
         this.#subscribers.errors.set(callback, callback);
 
         if (this.#errors && isImmediate) {

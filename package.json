@@ -8,18 +8,21 @@
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
+        "watch": "tsc --watch",
         "build": "tsc",
         "prepack": "yarn build"
     },
     "dependencies": {
         "immer": "^9.0.13",
         "is-plain-obj": "^4.1.0",
+        "use-sync-external-store": "^1.2.0",
         "wildcard-match": "^5.1.2"
     },
     "devDependencies": {
         "@savks/not-need-lodash": "^1.1.6",
         "@savks/react-helpers": "^1.0.0",
         "@types/react": "^18.0.9",
+        "@types/use-sync-external-store": "^0.0.3",
         "@typescript-eslint/eslint-plugin": "^5.2.0",
         "@typescript-eslint/parser": "^5.2.0",
         "eslint": "^8.1.0",

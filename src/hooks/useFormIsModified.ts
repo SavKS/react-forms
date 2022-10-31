@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 import Form from '../Form';
 
 export default function useFormIsModified(form: Form) {
-    const [ isModified, setIsModified ] = useState(
-        () => form.isModified
-    );
-
-    useEffect(
-        () => form.onIsModifiedChange((newValue) => {
-            setIsModified(newValue);
-        }),
+    const getIsModified = useCallback(
+        () => form.isModified,
         [ form ]
     );
 
-    return isModified;
+    return useSyncExternalStore(
+        form.onIsModifiedChange,
+        getIsModified,
+        getIsModified
+    );
 }

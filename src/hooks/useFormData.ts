@@ -1,5 +1,6 @@
 import get from '@savks/not-need-lodash/get';
-import { useEffect, useState } from 'react';
+import { useCallback } from 'react';
+import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector';
 import Form from '../Form';
 import useFieldPath from '../hooks/useFieldPath';
 
@@ -17,24 +18,18 @@ export default function useFormData<ValueType = any, DefaultValueType = ValueTyp
 
     const normalizedPath = useFieldPath(path ?? '', isRoot);
 
-    const [ value, setValue ] = useState(
-        () => normalizedPath ? get(form.data, normalizedPath) : form.data
+    const getData = useCallback(
+        () => form.data,
+        [ form ]
     );
 
-    useEffect(
-        () => form.onDataChange((newValue) => {
-            setValue(
-                normalizedPath ? get(newValue, normalizedPath) : newValue
-            );
-        }),
-        [ form, normalizedPath ]
+    return useSyncExternalStoreWithSelector(
+        form.onDataChange,
+        getData,
+        getData,
+        useCallback(
+            data => (normalizedPath ? get(data, normalizedPath) : data) ?? defaultValue,
+            [ normalizedPath, defaultValue ]
+        )
     );
-
-    useEffect(() => {
-        setValue(
-            normalizedPath ? get(form.data, normalizedPath) : form.data
-        );
-    }, [ form, normalizedPath ]);
-
-    return value ?? defaultValue;
 }

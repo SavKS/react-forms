@@ -1,17 +1,15 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 import Form from '../Form';
 
 export default function useFormIsLocked(form: Form) {
-    const [ isLocked, setIsLocked ] = useState(
-        () => form.isProcessing
-    );
-
-    useEffect(
-        () => form.onIsLockedChange((newValue) => {
-            setIsLocked(newValue);
-        }),
+    const getIsLocked = useCallback(
+        () => form.isLocked,
         [ form ]
     );
 
-    return isLocked;
+    return useSyncExternalStore(
+        form.onIsLockedChange,
+        getIsLocked,
+        getIsLocked
+    );
 }
