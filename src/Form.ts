@@ -94,7 +94,7 @@ class Form {
         return () => {
             this.#subscribers.data.delete(callback);
         };
-    }
+    };
 
     onIsLockedChange = (callback: SubscriberTypes['isLocked']) => {
         this.#subscribers.isLocked.set(callback, callback);
@@ -102,7 +102,7 @@ class Form {
         return () => {
             this.#subscribers.isLocked.delete(callback);
         };
-    }
+    };
 
     onIsProcessingChange = (callback: SubscriberTypes['isProcessing']) => {
         this.#subscribers.isProcessing.set(callback, callback);
@@ -110,7 +110,7 @@ class Form {
         return () => {
             this.#subscribers.isProcessing.delete(callback);
         };
-    }
+    };
 
     onIsModifiedChange = (callback: SubscriberTypes['isModified']) => {
         this.#subscribers.isModified.set(callback, callback);
@@ -118,7 +118,7 @@ class Form {
         return () => {
             this.#subscribers.isModified.delete(callback);
         };
-    }
+    };
 
     onErrorsChange = (callback: SubscriberTypes['errors'], isImmediate = false) => {
         this.#subscribers.errors.set(callback, callback);
@@ -130,7 +130,7 @@ class Form {
         return () => {
             this.#subscribers.errors.delete(callback);
         };
-    }
+    };
 
     markAsProcessing() {
         this.#isProcessing = true;

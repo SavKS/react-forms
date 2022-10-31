@@ -22,7 +22,7 @@ export default <T = any>(form: Form, path?: string, config: Config = {}) => {
                 }) :
                 value;
 
-            form.setData(newValue, false);
+            form.setData(newValue as Record<string, any>, false);
         } else {
             form.change(normalizedPath, value);
         }

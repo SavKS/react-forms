@@ -2,11 +2,9 @@ import { useMemoCompare } from '@savks/react-helpers';
 import { useContext } from 'react';
 import { ScopeContext } from '../contexts/ScopeContext';
 
-export default function useFieldPath(path: string, isRoot?: boolean): string;
-
-export default function useFieldPath(path: string[], isRoot?: boolean): string[];
-
-export default function useFieldPath(path: string | string[], isRoot = false): string | string[] {
+function useFieldPath(path: string, isRoot?: boolean): string;
+function useFieldPath(path: string[], isRoot?: boolean): string[];
+function useFieldPath(path: string | string[], isRoot = false): string | string[] {
     const scope = useContext(ScopeContext);
 
     return useMemoCompare(() => {
@@ -27,3 +25,5 @@ export default function useFieldPath(path: string | string[], isRoot = false): s
         );
     }, [ isRoot, path, scope ]);
 }
+
+export default useFieldPath;

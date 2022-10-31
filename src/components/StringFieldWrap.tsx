@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent, useCallback } from 'react';
 import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors';
 import useContextualForm from '../hooks/useContextualForm';
 import useFieldPath from '../hooks/useFieldPath';
@@ -19,7 +19,7 @@ type Props = {
         change: (value: NewValue) => void,
         clear: () => void
     }) => void
-}
+};
 
 export default function StringFieldWrap(props: Props) {
     const form = useContextualForm();

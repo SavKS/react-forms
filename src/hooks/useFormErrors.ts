@@ -27,7 +27,7 @@ export default function useFormErrors(form: Form, names?: string | string[]) {
         getErrors,
         useCallback(
             errors => resolveErrors(errors, scope, names),
-            [scope, names]
+            [ scope, names ]
         ),
         isEqual
     );

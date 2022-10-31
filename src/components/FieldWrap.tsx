@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import { useCallback } from 'react';
 import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors';
 import useContextualForm from '../hooks/useContextualForm';
 import useFieldPath from '../hooks/useFieldPath';
