@@ -294,4 +294,14 @@ typings/
 # End of https://www.toptal.com/developers/gitignore/api/node,phpstorm,jetbrains,vscode
 
 .idea
+.vscode
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+node_modules
 dist
