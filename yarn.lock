@@ -88,10 +88,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@savks/not-need-lodash@npm:^1.2.5":
-  version: 1.2.5
-  resolution: "@savks/not-need-lodash@npm:1.2.5"
-  checksum: 2fe443f223c2b0cfa5b94deef9bc3df4e661def2ca0048185aa3227ac652e57970214f6592f85c045766d1586b797d5d0c1a379946ccda2559ed6c429c711b42
+"@savks/not-need-lodash@npm:^1.2.6":
+  version: 1.2.6
+  resolution: "@savks/not-need-lodash@npm:1.2.6"
+  checksum: fdfad85e342bb89e3cbae8786ba24f8646060f698c1468d5bf79c2cdc44d04bec7aea551fa87c275f45fd375a7c7d32c767eaeb4a98203647618a8b3525636ea
   languageName: node
   linkType: hard
 
@@ -99,14 +99,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@savks/react-forms@workspace:."
   dependencies:
-    "@savks/not-need-lodash": ^1.2.5
+    "@savks/not-need-lodash": ^1.2.6
     "@savks/react-helpers": ^1.0.3
-    "@tarik02/eslint-config-type-1": ^0.1.2
-    "@tarik02/eslint-config-type-1-import": ^0.1.2
-    "@tarik02/eslint-config-type-1-react": ^0.1.2
-    "@types/react": ^18.0.24
+    "@tarik02/eslint-config-type-1": ^0.1.3
+    "@tarik02/eslint-config-type-1-import": ^0.1.3
+    "@tarik02/eslint-config-type-1-react": ^0.1.3
+    "@types/react": ^18.0.25
     "@types/use-sync-external-store": ^0.0.3
-    eslint: ^8.26.0
+    eslint: ^8.27.0
     immer: ^9.0.16
     is-plain-obj: ^4.1.0
     typescript: ^4.8.4
@@ -133,41 +133,41 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tarik02/eslint-config-type-1-import@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@tarik02/eslint-config-type-1-import@npm:0.1.2"
+"@tarik02/eslint-config-type-1-import@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "@tarik02/eslint-config-type-1-import@npm:0.1.3"
   dependencies:
     eslint-import-resolver-typescript: ^3.5.2
     eslint-plugin-import: ^2.26.0
   peerDependencies:
     eslint: ">=8"
-  checksum: a89f82c88e54978d86f25f88241d0682869145e17be406230e058a48e7cd20e3e16d627b5111732a50e78025ae720ee709c095e309bd21f27b9361c5a3822cc3
+  checksum: 356592ea8578320b5d57c44489ecb778be4232e9b639673f8cd450ec0bc86acd9f02edcd5515c406567afb2e45663ce1b493e97e7fac0639cbaea34b775a096b
   languageName: node
   linkType: hard
 
-"@tarik02/eslint-config-type-1-react@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@tarik02/eslint-config-type-1-react@npm:0.1.2"
+"@tarik02/eslint-config-type-1-react@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "@tarik02/eslint-config-type-1-react@npm:0.1.3"
   dependencies:
     eslint-plugin-react: ^7.31.10
     eslint-plugin-react-hooks: ^4.6.0
     eslint-plugin-react-redux: ^4.0.0
   peerDependencies:
     eslint: ">=8"
-  checksum: 88f0041409d162160b630569926608402487e6112ee447ca4e0d671a999c1221b67cebadbdec03bd8eacee946c0c2290665d4734db13b934b2c79881750ff91c
+  checksum: 600bcefc0d52b5d71c4f466f2505338308ba29c822b916b75e3990d40cdc40c0e7fe0e6d818c56aa30a7f88c514130eb037562bcaff8fe084bcc42ef88b634f3
   languageName: node
   linkType: hard
 
-"@tarik02/eslint-config-type-1@npm:^0.1.2":
-  version: 0.1.2
-  resolution: "@tarik02/eslint-config-type-1@npm:0.1.2"
+"@tarik02/eslint-config-type-1@npm:^0.1.3":
+  version: 0.1.3
+  resolution: "@tarik02/eslint-config-type-1@npm:0.1.3"
   dependencies:
     "@typescript-eslint/eslint-plugin": ^5.41.0
     "@typescript-eslint/parser": ^5.41.0
   peerDependencies:
     eslint: ">=8"
     typescript: ">=4"
-  checksum: 7484c0098f7e2943cee9acda04de40b362a033c01859954b4ca10726640863521fb5ce801589ce4211355add18b3f94474c397c4b86eead7992f89783f43a856
+  checksum: 32657d9cac01d599a45d543b256078d6ea8aa1a77fa66936f515d598f0e62a781a9308635e50b73519c95b61ed5476f637c2e4106c5625197522570cc173c644
   languageName: node
   linkType: hard
 
@@ -192,14 +192,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:^18.0.24":
-  version: 18.0.24
-  resolution: "@types/react@npm:18.0.24"
+"@types/react@npm:^18.0.25":
+  version: 18.0.25
+  resolution: "@types/react@npm:18.0.25"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 7d06125bac61e1c6661e5dfbeeeb56d5b6d1d4c743292faebaa6b0f30f8414c7af3cadf674923fd86e4ca14e82566ff9156cd40c56786be024600c31b97d6c03
+  checksum: 231d658c45abdef044a716b4502774f1585d8336d73b2f5bd68f181acbfc874b7a457686ecd29b415b43ed0922c309bab7e2cf96832d188a3f4f1b02f2af760a
   languageName: node
   linkType: hard
 
@@ -844,9 +844,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^8.26.0":
-  version: 8.26.0
-  resolution: "eslint@npm:8.26.0"
+"eslint@npm:^8.27.0":
+  version: 8.27.0
+  resolution: "eslint@npm:8.27.0"
   dependencies:
     "@eslint/eslintrc": ^1.3.3
     "@humanwhocodes/config-array": ^0.11.6
@@ -889,7 +889,7 @@ __metadata:
     text-table: ^0.2.0
   bin:
     eslint: bin/eslint.js
-  checksum: a2aced939ea060f77d10dcfced5cfeb940f63f383fd7ab1decadea64170ab552582e1c5909db1db641d4283178c9bc569f19b0f8900e00314a5f783e4b3f759d
+  checksum: 153b022d309e1b647a73b1bb0fa98912add699b06e279084155f23c6f2b5fc5abd05411fc1ba81608a24bbfaf044ca079544c16fffa6fc987b8f676c9960a2c4
   languageName: node
   linkType: hard
 

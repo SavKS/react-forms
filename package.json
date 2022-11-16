@@ -21,14 +21,14 @@
         "wildcard-match": "^5.1.2"
     },
     "devDependencies": {
-        "@savks/not-need-lodash": "^1.2.5",
+        "@savks/not-need-lodash": "^1.2.6",
         "@savks/react-helpers": "^1.0.3",
-        "@tarik02/eslint-config-type-1": "^0.1.2",
-        "@tarik02/eslint-config-type-1-import": "^0.1.2",
-        "@tarik02/eslint-config-type-1-react": "^0.1.2",
-        "@types/react": "^18.0.24",
+        "@tarik02/eslint-config-type-1": "^0.1.3",
+        "@tarik02/eslint-config-type-1-import": "^0.1.3",
+        "@tarik02/eslint-config-type-1-react": "^0.1.3",
+        "@types/react": "^18.0.25",
         "@types/use-sync-external-store": "^0.0.3",
-        "eslint": "^8.26.0",
+        "eslint": "^8.27.0",
         "typescript": "^4.8.4"
     },
     "peerDependencies": {
