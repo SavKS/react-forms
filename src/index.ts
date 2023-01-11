@@ -1,6 +1,9 @@
 import BooleanFieldWrap from './components/BooleanFieldWrap';
 import CheckboxGroup from './components/CheckboxGroup';
 import ConsumeFieldValue from './components/ConsumeFieldValue';
+import ConsumeErrors from './components/ConsumeErrors';
+import ConsumeErrorsAsArray from './components/ConsumeErrorsAsArray';
+import ConsumeFormattedErrors from './components/ConsumeFormattedErrors';
 import FieldWrap from './components/FieldWrap';
 import FormScope from './components/FormScope';
 import FormWrap from './components/FormWrap';
@@ -61,6 +64,9 @@ export {
     StringFieldWrap,
     NumberFieldWrap,
     ConsumeFieldValue,
+    ConsumeErrors,
+    ConsumeErrorsAsArray,
+    ConsumeFormattedErrors,
     CheckboxGroup,
 
     extractErrors,

@@ -4,19 +4,43 @@ import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-s
 import Form from '../Form';
 import useFieldPath from '../hooks/useFieldPath';
 
-type Config<DefaultValueType> = {
-    defaultValue?: DefaultValueType,
-    isRoot?: boolean
-};
-
-export default function useFormData<ValueType = any, DefaultValueType = ValueType>(
+function useFormData<ValueType = any>(
     form: Form,
-    path?: string,
-    config: Config<DefaultValueType> = {}
-): ValueType {
-    const { defaultValue, isRoot } = config;
+    accessor?: string,
+    config?: {
+        defaultValue?: ValueType,
+        isRoot?: boolean
+    }
+): ValueType | undefined;
 
-    const normalizedPath = useFieldPath(path ?? '', isRoot);
+function useFormData<
+    ValueType = any,
+    FormData extends Record<string, any> = Record<string, any>
+>(
+    form: Form,
+    accessor: (data: FormData | undefined) => ValueType,
+    config?: {
+        isRoot?: boolean
+    }
+): ValueType | undefined;
+
+function useFormData<
+    ValueType = any,
+    FormData extends Record<string, any> = Record<string, any>
+>(
+    form: Form,
+    accessor?: string | ((data: FormData | undefined) => ValueType),
+    config?: {
+        defaultValue?: ValueType,
+        isRoot?: boolean
+    }
+): ValueType {
+    const { defaultValue, isRoot } = config ?? {};
+
+    const normalizedPath = useFieldPath(
+        typeof accessor === 'function' ? '' : (accessor ?? ''),
+        isRoot
+    );
 
     const getData = useCallback(
         () => form.data,
@@ -27,9 +51,16 @@ export default function useFormData<ValueType = any, DefaultValueType = ValueTyp
         form.onDataChange,
         getData,
         getData,
-        useCallback(
-            data => (normalizedPath ? get(data, normalizedPath) : data) ?? defaultValue,
-            [ normalizedPath, defaultValue ]
-        )
+        useCallback(data => {
+            const scopedData = normalizedPath ? get(data, normalizedPath) : data;
+
+            if (typeof accessor === 'function') {
+                return accessor(scopedData);
+            }
+
+            return scopedData ?? defaultValue;
+        }, [ normalizedPath, defaultValue, accessor ])
     );
 }
+
+export default useFormData;

@@ -6,15 +6,15 @@ import Form from '../Form';
 type Props<T> = {
     path: string,
     form?: Form,
-    children: (value: T) => ReactNode
+    children: (value: T | undefined) => ReactNode
 };
 
-export default function ConsumeFieldValue<T = any>(props: Props<T>) {
-    if (props.form) {
+export default function ConsumeFieldValue<T = any>({ form, ...props }: Props<T>) {
+    if (form) {
         return (
             <ForForm
                 { ...props }
-                form={ props.form }
+                form={ form }
             />
         );
     }
