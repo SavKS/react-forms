@@ -8,10 +8,20 @@ function useFormData<ValueType = any>(
     form: Form,
     accessor?: string,
     config?: {
-        defaultValue?: ValueType,
+        isEqual?: (a: ValueType | undefined, b: ValueType | undefined) => boolean,
         isRoot?: boolean
     }
 ): ValueType | undefined;
+
+function useFormData<ValueType = any>(
+    form: Form,
+    accessor: string | undefined,
+    config: {
+        isEqual?: (a: ValueType, b: ValueType) => boolean,
+        defaultValue: ValueType,
+        isRoot?: boolean
+    }
+): ValueType;
 
 function useFormData<
     ValueType = any,
@@ -20,9 +30,10 @@ function useFormData<
     form: Form,
     accessor: (data: FormData | undefined) => ValueType,
     config?: {
+        isEqual?: (a: ValueType, b: ValueType) => boolean,
         isRoot?: boolean
     }
-): ValueType | undefined;
+): ValueType;
 
 function useFormData<
     ValueType = any,
@@ -31,6 +42,7 @@ function useFormData<
     form: Form,
     accessor?: string | ((data: FormData | undefined) => ValueType),
     config?: {
+        isEqual?: (a: ValueType | undefined, b: ValueType | undefined) => boolean,
         defaultValue?: ValueType,
         isRoot?: boolean
     }
@@ -59,7 +71,8 @@ function useFormData<
             }
 
             return scopedData ?? defaultValue;
-        }, [ normalizedPath, defaultValue, accessor ])
+        }, [ normalizedPath, defaultValue, accessor ]),
+        config?.isEqual as any
     );
 }
 
