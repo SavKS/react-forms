@@ -16,5 +16,8 @@
         "react": {
             "version": "18"
         }
-    }
+    },
+    "ignorePatterns": [
+        "dist"
+    ]
 }

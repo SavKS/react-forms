@@ -1,7 +1,7 @@
 {
     "name": "@savks/react-forms",
     "packageManager": "yarn@3.2.4",
-    "version": "1.4.1",
+    "version": "1.4.2",
     "description": "React forms",
     "license": "MIT",
     "author": "Savks",
@@ -23,9 +23,9 @@
     "devDependencies": {
         "@savks/not-need-lodash": "^1.2.6",
         "@savks/react-helpers": "^1.0.3",
-        "@tarik02/eslint-config-type-1": "^0.1.6",
-        "@tarik02/eslint-config-type-1-import": "^0.1.6",
-        "@tarik02/eslint-config-type-1-react": "^0.1.6",
+        "@tarik02/eslint-config-type-1": "^0.1.7",
+        "@tarik02/eslint-config-type-1-import": "^0.1.7",
+        "@tarik02/eslint-config-type-1-react": "^0.1.7",
         "@types/react": "^18.0.26",
         "@types/use-sync-external-store": "^0.0.3",
         "eslint": "^8.31.0",

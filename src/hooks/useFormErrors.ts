@@ -13,8 +13,12 @@ const resolveErrors = (errors: ValidationErrors, scope?: string, names?: string 
     return filterErrors(filteredErrors, names);
 };
 
-export default function useFormErrors(form: Form, names?: string | string[]) {
+export default function useFormErrors(form: Form, names?: string | string[], config?: {
+    isRoot?: boolean
+}) {
     const scope = useContext(ScopeContext);
+
+    const resultScope = config?.isRoot ? undefined : scope;
 
     const getErrors = useCallback(
         () => form.errors,
@@ -26,8 +30,8 @@ export default function useFormErrors(form: Form, names?: string | string[]) {
         getErrors,
         getErrors,
         useCallback(
-            errors => resolveErrors(errors, scope, names),
-            [ scope, names ]
+            errors => resolveErrors(errors, resultScope, names),
+            [ resultScope, names ]
         ),
         isEqual
     );

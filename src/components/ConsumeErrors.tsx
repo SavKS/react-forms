@@ -1,51 +1,28 @@
-import { ReactNode } from 'react';
-import useContextualForm from '../hooks/useContextualForm';
+import { ReactNode, useContext } from 'react';
 import Form from '../Form';
 import useFormErrors from '../hooks/useFormErrors';
 import { ValidationErrors } from '../types';
+import { FormContext } from '../contexts/FormContext';
 
 type Props = {
     path: string | string[],
     form?: Form,
+    config?: {
+        isRoot?: boolean
+    },
     children: (errors: ValidationErrors | undefined) => ReactNode
 };
 
-export default function ConsumeErrors({ form, ...props }: Props) {
-    if (form) {
-        return (
-            <ForForm
-                { ...props }
-                form={ form }
-            />
-        );
+export default function ConsumeErrors(props: Props) {
+    const contextForm = useContext(FormContext);
+
+    const form = props.form ?? contextForm;
+
+    if (!form) {
+        throw new Error('Can\'t resolve form');
     }
 
-    return (
-        <ForContextualForm { ...props } />
-    );
-}
-
-function ForContextualForm(props: Props) {
-    const value = useFormErrors(
-        useContextualForm(),
-        props.path
-    );
-
-    return (
-        <>
-            {
-                props.children(
-                    Object.keys(value).length ?
-                        value :
-                        undefined
-                )
-            }
-        </>
-    );
-}
-
-function ForForm<T = any>(props: Props & { form: Form }) {
-    const value = useFormErrors(props.form, props.path);
+    const value = useFormErrors(form, props.path, props.config);
 
     return (
         <>

@@ -1,7 +1,7 @@
-import { ReactNode } from 'react';
-import useContextualForm from '../hooks/useContextualForm';
+import { ReactNode, useContext } from 'react';
 import useFormData from '../hooks/useFormData';
 import Form from '../Form';
+import { FormContext } from '../contexts/FormContext';
 
 type Props<T> = {
     path: string,
@@ -9,34 +9,16 @@ type Props<T> = {
     children: (value: T | undefined) => ReactNode
 };
 
-export default function ConsumeFieldValue<T = any>({ form, ...props }: Props<T>) {
-    if (form) {
-        return (
-            <ForForm
-                { ...props }
-                form={ form }
-            />
-        );
+export default function ConsumeFieldValue<T = any>(props: Props<T>) {
+    const contextForm = useContext(FormContext);
+
+    const form = props.form ?? contextForm;
+
+    if (!form) {
+        throw new Error('Can\'t resolve form');
     }
 
-    return (
-        <ForContextualForm { ...props } />
-    );
-}
-
-function ForContextualForm<T = any>(props: Props<T>) {
-    const value = useFormData(
-        useContextualForm(),
-        props.path
-    );
-
-    return (
-        <>{ props.children(value) }</>
-    );
-}
-
-function ForForm<T = any>(props: Props<T> & { form: Form }) {
-    const value = useFormData(props.form, props.path);
+    const value = useFormData(form, props.path);
 
     return (
         <>{ props.children(value) }</>
