@@ -15,7 +15,7 @@
         "lint": "eslint src"
     },
     "dependencies": {
-        "immer": "^9.0.17",
+        "immer": "^9.0.18",
         "is-plain-obj": "^4.1.0",
         "use-sync-external-store": "^1.2.0",
         "wildcard-match": "^5.1.2"
@@ -23,12 +23,12 @@
     "devDependencies": {
         "@savks/not-need-lodash": "^1.2.6",
         "@savks/react-helpers": "^1.0.3",
-        "@tarik02/eslint-config-type-1": "^0.1.7",
-        "@tarik02/eslint-config-type-1-import": "^0.1.7",
-        "@tarik02/eslint-config-type-1-react": "^0.1.7",
-        "@types/react": "^18.0.26",
+        "@tarik02/eslint-config-type-1": "^0.1.8",
+        "@tarik02/eslint-config-type-1-import": "^0.1.8",
+        "@tarik02/eslint-config-type-1-react": "^0.1.8",
+        "@types/react": "^18.0.27",
         "@types/use-sync-external-store": "^0.0.3",
-        "eslint": "^8.31.0",
+        "eslint": "^8.32.0",
         "typescript": "^4.9.4"
     },
     "peerDependencies": {
