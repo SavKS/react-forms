@@ -1,19 +1,21 @@
-import React, { ReactNode, useMemo } from 'react';
+import React, { ChangeEvent, ReactNode, useMemo } from 'react';
+
+type Value = boolean | ChangeEvent<HTMLInputElement>;
 
 type Payload = {
     checked: boolean,
-    change: (value: boolean) => void
+    change: (value: Value) => void
 };
 
-type Props = {
-    value: any[] | undefined,
-    items: any[],
-    keyBy: string,
-    children: (item: any, payload: Payload) => ReactNode,
-    onChange: (value: any[]) => void
+type Props<T extends Record<K, string>, K extends string> = {
+    value: T[K][] | undefined,
+    items: T[],
+    keyBy: K,
+    children: (item: T, payload: Payload) => ReactNode,
+    onChange: (value: T[K][]) => void
 };
 
-export default function CheckboxGroup(props: Props) {
+export default function CheckboxGroup<T extends Record<K, string>, K extends string>(props: Props<T, K>) {
     const statuses = useMemo(
         () => props.items.reduce((carry, item) => {
             carry[ item[ props.keyBy ] ] = !!props.value?.includes(item[ props.keyBy ]);
@@ -25,8 +27,10 @@ export default function CheckboxGroup(props: Props) {
 
     const changeHandlers = useMemo(
         () => props.items.reduce((carry, item) => {
-            carry[ item[ props.keyBy ] ] = (checked: boolean) => {
+            carry[ item[ props.keyBy ] ] = (value: boolean | ChangeEvent<HTMLInputElement>) => {
                 const index = props.value?.indexOf(item[ props.keyBy ]) ?? -1;
+
+                const checked = typeof value === 'boolean' ? value : value.currentTarget.checked;
 
                 if (checked) {
                     if (index === -1) {
@@ -48,7 +52,7 @@ export default function CheckboxGroup(props: Props) {
             };
 
             return carry;
-        }, {} as Record<string, boolean>),
+        }, {} as Record<string, Payload['change']>),
         [ props ]
     );
 
