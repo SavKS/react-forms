@@ -1,7 +1,7 @@
 {
     "name": "@savks/react-forms",
     "packageManager": "yarn@3.2.4",
-    "version": "1.4.4",
+    "version": "1.4.5",
     "description": "React forms",
     "license": "MIT",
     "author": "Savks",
