@@ -1,13 +1,14 @@
 {
     "name": "@savks/react-forms",
     "packageManager": "yarn@3.2.4",
-    "version": "1.4.5",
+    "version": "1.5.0",
     "description": "React forms",
     "license": "MIT",
     "author": "Savks",
     "sideEffects": false,
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
+    "type": "module",
     "scripts": {
         "watch": "tsc --watch",
         "build": "tsc",
