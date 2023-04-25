@@ -1,7 +1,8 @@
-import React, { ReactNode, useMemo } from 'react';
-import Form from '../Form';
-import useFormIsLocked from '../hooks/useFormIsLocked';
-import useFormIsProcessing from '../hooks/useFormIsProcessing';
+import { ReactNode, createContext, useMemo } from 'react';
+
+import Form from '../Form.js';
+import useFormIsLocked from '../hooks/useFormIsLocked.js';
+import useFormIsProcessing from '../hooks/useFormIsProcessing.js';
 
 export type ContextualFormStatusContextValue = {
     isProcessing: boolean,
@@ -13,7 +14,7 @@ const defaultValue = {
     isLocked: false
 };
 
-export const FormStatusContext = React.createContext<ContextualFormStatusContextValue>(defaultValue);
+export const FormStatusContext = createContext<ContextualFormStatusContextValue>(defaultValue);
 
 export function FormStatusContextProvider(props: {
     form: Form,

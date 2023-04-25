@@ -1,8 +1,9 @@
 import { ChangeEvent, useCallback } from 'react';
-import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors';
-import useContextualForm from '../hooks/useContextualForm';
-import useFieldPath from '../hooks/useFieldPath';
-import useFormData from '../hooks/useFormData';
+
+import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors.js';
+import useContextualForm from '../hooks/useContextualForm.js';
+import useFieldPath from '../hooks/useFieldPath.js';
+import useFormData from '../hooks/useFormData.js';
 
 export type NewValue =
     | boolean

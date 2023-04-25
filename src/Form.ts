@@ -2,9 +2,10 @@ import get from '@savks/not-need-lodash/get';
 import isEqual from '@savks/not-need-lodash/isEqual';
 import set from '@savks/not-need-lodash/set';
 import unset from '@savks/not-need-lodash/unset';
-import produce from 'immer';
+import { produce } from 'immer';
 import isPlainObject from 'is-plain-obj';
-import { ValidationErrors } from './types';
+
+import { ValidationErrors } from './types.js';
 
 type Subscriber<T> = (newValue: T) => void;
 

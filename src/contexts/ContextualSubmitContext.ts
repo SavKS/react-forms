@@ -1,8 +1,8 @@
-import React, { FormEventHandler, useContext } from 'react';
+import { FormEventHandler, createContext, useContext } from 'react';
 
 export type ContextualSubmitContextValue = FormEventHandler<HTMLFormElement> & (() => void);
 
-export const ContextualSubmitContext = React.createContext<ContextualSubmitContextValue | undefined>(undefined);
+export const ContextualSubmitContext = createContext<ContextualSubmitContextValue | undefined>(undefined);
 
 export const useContextualSubmit = () => {
     const context = useContext(ContextualSubmitContext);

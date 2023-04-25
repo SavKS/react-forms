@@ -1,7 +1,8 @@
 import { ReactNode, useContext } from 'react';
-import useFormData from '../hooks/useFormData';
-import Form from '../Form';
-import { FormContext } from '../contexts/FormContext';
+
+import { FormContext } from '../contexts/FormContext.js';
+import Form from '../Form.js';
+import useFormData from '../hooks/useFormData.js';
 
 type Props<T> = {
     path: string,

@@ -1,8 +1,9 @@
 import get from '@savks/not-need-lodash/get';
 import { useCallback } from 'react';
-import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector';
-import Form from '../Form';
-import useFieldPath from '../hooks/useFieldPath';
+import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector.js';
+
+import Form from '../Form.js';
+import useFieldPath from '../hooks/useFieldPath.js';
 
 function useFormData<ValueType = any>(
     form: Form,

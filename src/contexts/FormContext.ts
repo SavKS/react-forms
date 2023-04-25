@@ -1,6 +1,7 @@
-import React from 'react';
-import Form from '../Form';
+import { createContext } from 'react';
+
+import Form from '../Form.js';
 
 export type FormContextValue = Form;
 
-export const FormContext = React.createContext<FormContextValue | undefined>(undefined);
+export const FormContext = createContext<FormContextValue | undefined>(undefined);

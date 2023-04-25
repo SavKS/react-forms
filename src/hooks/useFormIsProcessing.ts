@@ -1,5 +1,6 @@
 import { useCallback, useSyncExternalStore } from 'react';
-import Form from '../Form';
+
+import Form from '../Form.js';
 
 export default function useFormIsProcessing(form: Form) {
     const getIsProcessing = useCallback(

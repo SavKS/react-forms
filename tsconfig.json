@@ -8,8 +8,7 @@
         "jsx": "react-jsx",
         "outDir": "./dist",
         "declaration": true,
-        "declarationDir": "./dist",
-        "moduleResolution": "Node"
+        "moduleResolution": "NodeNext"
     },
     "exclude": [
         "node_modules",

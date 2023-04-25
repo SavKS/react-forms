@@ -1,5 +1,8 @@
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
 import wildcardMatch from 'wildcard-match';
-import { ValidationErrors } from '../types';
+
+import { ValidationErrors } from '../types.js';
 
 export default (errors: ValidationErrors, names?: string | string[]) => {
     const normalizedNames = names ? [ names ].flat() : [];

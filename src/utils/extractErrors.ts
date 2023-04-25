@@ -1,4 +1,4 @@
-import { ValidationErrors } from '../types';
+import { ValidationErrors } from '../types.js';
 
 export default (errors: ValidationErrors, prefix: string) => {
     const prefixRegExp = new RegExp(`^${ prefix }\\.`);

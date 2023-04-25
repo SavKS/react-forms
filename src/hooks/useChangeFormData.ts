@@ -1,7 +1,8 @@
-import produce, { Draft } from 'immer';
+import { Draft, produce } from 'immer';
 import { useCallback, useContext } from 'react';
-import { ScopeContext } from '../contexts/ScopeContext';
-import Form from '../Form';
+
+import { ScopeContext } from '../contexts/ScopeContext.js';
+import Form from '../Form.js';
 
 type Config = {
     isRoot?: boolean

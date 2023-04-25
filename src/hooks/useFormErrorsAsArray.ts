@@ -1,6 +1,7 @@
 import { useMemo } from 'react';
-import Form from '../Form';
-import useFormErrors from '../hooks/useFormErrors';
+
+import Form from '../Form.js';
+import useFormErrors from '../hooks/useFormErrors.js';
 
 export default function useFormFormattedErrors(form: Form, names?: string | string[], config?: {
     isRoot?: boolean

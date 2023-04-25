@@ -1,9 +1,12 @@
 import { useMemoCompare } from '@savks/react-helpers';
 import { useContext } from 'react';
-import { ScopeContext } from '../contexts/ScopeContext';
+
+import { ScopeContext } from '../contexts/ScopeContext.js';
 
 function useFieldPath(path: string, isRoot?: boolean): string;
+
 function useFieldPath(path: string[], isRoot?: boolean): string[];
+
 function useFieldPath(path: string | string[], isRoot = false): string | string[] {
     const scope = useContext(ScopeContext);
 

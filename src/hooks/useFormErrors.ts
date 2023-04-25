@@ -1,11 +1,12 @@
 import isEqual from '@savks/not-need-lodash/isEqual';
 import { useCallback, useContext } from 'react';
-import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector';
-import { ScopeContext } from '../contexts/ScopeContext';
-import Form from '../Form';
-import { ValidationErrors } from '../types';
-import extractErrors from '../utils/extractErrors';
-import filterErrors from '../utils/filterErrors';
+import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector.js';
+
+import { ScopeContext } from '../contexts/ScopeContext.js';
+import Form from '../Form.js';
+import { ValidationErrors } from '../types.js';
+import extractErrors from '../utils/extractErrors.js';
+import filterErrors from '../utils/filterErrors.js';
 
 const resolveErrors = (errors: ValidationErrors, scope?: string, names?: string | string[]) => {
     const filteredErrors = scope ? extractErrors(errors, scope) : errors;

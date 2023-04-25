@@ -1,5 +1,6 @@
 import { useRef } from 'react';
-import Form from '../Form';
+
+import Form from '../Form.js';
 
 export default function useForm(initialData?: Record<string, any>) {
     const formRef = useRef<Form | null>(null);

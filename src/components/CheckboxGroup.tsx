@@ -1,4 +1,4 @@
-import React, { ChangeEvent, ReactNode, useMemo } from 'react';
+import { ChangeEvent, Fragment, ReactNode, useMemo } from 'react';
 
 type Value = boolean | ChangeEvent<HTMLInputElement>;
 
@@ -61,14 +61,14 @@ export default function CheckboxGroup<T extends Record<K, string>, K extends str
             {
                 props.items.map(
                     item => (
-                        <React.Fragment key={ item[ props.keyBy ] }>
+                        <Fragment key={ item[ props.keyBy ] }>
                             {
                                 props.children(item, {
                                     checked: statuses[ item[ props.keyBy ] ],
                                     change: changeHandlers[ item[ props.keyBy ] ]
                                 })
                             }
-                        </React.Fragment>
+                        </Fragment>
                     )
                 )
             }

@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
-import Form from '../Form';
-import useFormErrorsAsArray from './useFormErrorsAsArray';
-import useFormIsProcessing from './useFormIsProcessing';
+
+import Form from '../Form.js';
+
+import useFormErrorsAsArray from './useFormErrorsAsArray.js';
+import useFormIsProcessing from './useFormIsProcessing.js';
 
 export default function useFormOnProcessed(
     form: Form,

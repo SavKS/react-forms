@@ -17,6 +17,33 @@
             "version": "18"
         }
     },
+    "rules": {
+        "import/order": [
+            "error",
+            {
+                "alphabetize": {
+                    "order": "asc",
+                    "caseInsensitive": true
+                },
+                "newlines-between": "always",
+                "groups": [
+                    [
+                        "builtin",
+                        "external"
+                    ],
+                    "internal",
+                    "parent",
+                    [
+                        "sibling",
+                        "index"
+                    ]
+                ],
+                "pathGroupsExcludedImportTypes": [
+                    "builtin"
+                ]
+            }
+        ]
+    },
     "ignorePatterns": [
         "dist"
     ]

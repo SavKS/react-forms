@@ -1,6 +1,7 @@
 import { ReactNode } from 'react';
-import { ScopeContext } from '../contexts/ScopeContext';
-import useFieldPath from '../hooks/useFieldPath';
+
+import { ScopeContext } from '../contexts/ScopeContext.js';
+import useFieldPath from '../hooks/useFieldPath.js';
 
 type Props = {
     path: string,

@@ -1,5 +1,5 @@
-import React from 'react';
+import { createContext } from 'react';
 
 export type ScopeContextValue = string;
 
-export const ScopeContext = React.createContext<ScopeContextValue | undefined>(undefined);
+export const ScopeContext = createContext<ScopeContextValue | undefined>(undefined);

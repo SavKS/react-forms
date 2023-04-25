@@ -1,7 +1,8 @@
 import { useMemo } from 'react';
-import Form from '../Form';
-import useFormErrors from '../hooks/useFormErrors';
-import formatErrors from '../utils/formatErrors';
+
+import Form from '../Form.js';
+import useFormErrors from '../hooks/useFormErrors.js';
+import formatErrors from '../utils/formatErrors.js';
 
 export default function useFormFormattedErrors(form: Form, names?: string | string[], config?: {
     delimiter?: string,

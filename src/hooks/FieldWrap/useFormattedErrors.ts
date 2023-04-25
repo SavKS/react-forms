@@ -1,7 +1,8 @@
 import { useMemoCompare } from '@savks/react-helpers';
 import { useMemo } from 'react';
-import useContextualForm from '../useContextualForm';
-import useFormFormattedErrors from '../useFormFormattedErrors';
+
+import useContextualForm from '../useContextualForm.js';
+import useFormFormattedErrors from '../useFormFormattedErrors.js';
 
 export default (paths: string | string[]) => {
     const form = useContextualForm();
