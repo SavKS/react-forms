@@ -1,6 +1,8 @@
 import { useMemoCompare } from '@savks/react-helpers';
+import { useContext } from 'react';
 
-import useContextualForm from './useContextualForm.js';
+import { FormContext } from '../contexts/FormContext.js';
+
 import useScopePath from './useScopePath.js';
 
 function useFieldPath(path: string, isRoot?: boolean): string;
@@ -9,7 +11,7 @@ function useFieldPath(path: string[], isRoot?: boolean): string[];
 
 function useFieldPath(path: string | string[], isRoot = false): string | string[] {
     const scope = useScopePath(
-        useContextualForm()
+        useContext(FormContext)
     );
 
     return useMemoCompare(() => {
