@@ -33,6 +33,8 @@ type Config = {
 };
 
 class Form {
+    displayName: string | undefined;
+
     #config: Config;
     #errors: ValidationErrors;
     #data: Record<string, any>;

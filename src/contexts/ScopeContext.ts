@@ -1,5 +1,10 @@
 import { createContext } from 'react';
 
-export type ScopeContextValue = string;
+import Form from '../Form.js';
+
+export type ScopeContextValue = {
+    form: Form,
+    path: string
+};
 
 export const ScopeContext = createContext<ScopeContextValue | undefined>(undefined);

@@ -11,6 +11,7 @@ import NumberFieldWrap from './components/NumberFieldWrap.js';
 import SimpleForm from './components/SimpleForm.js';
 import StringFieldWrap from './components/StringFieldWrap.js';
 import Form from './Form.js';
+import useFormattedErrors from './hooks/FieldWrap/useFormattedErrors.js';
 import useChangeFormData from './hooks/useChangeFormData.js';
 import useContextualForm from './hooks/useContextualForm.js';
 import useContextualFormStatus from './hooks/useContextualFormStatus.js';
@@ -46,6 +47,7 @@ export {
     useFormIsModified,
     useFormHasChanges,
     useFormCallback,
+    useFormattedErrors,
 
     useContextualForm,
     useChangeFormData,
