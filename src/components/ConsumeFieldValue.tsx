@@ -5,7 +5,7 @@ import Form from '../Form.js';
 import useFormData from '../hooks/useFormData.js';
 
 type Props<T> = {
-    path: string,
+    path?: string,
     form?: Form,
     children: (value: T | undefined) => ReactNode
 };
@@ -19,7 +19,7 @@ export default function ConsumeFieldValue<T = any>(props: Props<T>) {
         throw new Error('Can\'t resolve form');
     }
 
-    const value = useFormData(form, props.path);
+    const value = useFormData(form, props.path ?? '');
 
     return (
         <>{ props.children(value) }</>
