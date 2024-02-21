@@ -1,5 +1,6 @@
-import { useCallback } from 'react';
+import { ReactNode, useCallback } from 'react';
 
+import { FieldProvider } from '../contexts/FieldContext.js';
 import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors.js';
 import useContextualForm from '../hooks/useContextualForm.js';
 import useFieldPath from '../hooks/useFieldPath.js';
@@ -20,7 +21,7 @@ type Props<InputValue, OutputValue = InputValue> = {
         error?: string,
         change: (value: NewValue<OutputValue>) => void,
         clear: () => void
-    }) => void
+    }) => ReactNode
 };
 
 export default function FieldWrap<InputValue, OutputValue = InputValue>(
@@ -47,7 +48,13 @@ export default function FieldWrap<InputValue, OutputValue = InputValue>(
     const value = useFormData(form, props.path);
 
     return (
-        <>
+        <FieldProvider
+            path={ normalizedPath }
+            value={ value ?? props.typeDefaultValue }
+            error={ formattedErrors }
+            change={ change }
+            clear={ clear }
+        >
             {
                 props.children({
                     value: value ?? props.typeDefaultValue,
@@ -56,6 +63,6 @@ export default function FieldWrap<InputValue, OutputValue = InputValue>(
                     clear
                 })
             }
-        </>
+        </FieldProvider>
     );
 }

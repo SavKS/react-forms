@@ -1,5 +1,6 @@
-import { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent, ReactNode, useCallback } from 'react';
 
+import { FieldProvider } from '../contexts/FieldContext.js';
 import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors.js';
 import useContextualForm from '../hooks/useContextualForm.js';
 import useFieldPath from '../hooks/useFieldPath.js';
@@ -19,7 +20,7 @@ type Props = {
         error?: string,
         change: (value: NewValue) => void,
         clear: () => void
-    }) => void
+    }) => ReactNode
 };
 
 export default function NumberFieldWrap(props: Props) {
@@ -49,7 +50,13 @@ export default function NumberFieldWrap(props: Props) {
     const value = useFormData(form, props.path);
 
     return (
-        <>
+        <FieldProvider
+            path={ normalizedPath }
+            value={ value ?? undefined }
+            error={ formattedErrors }
+            change={ change }
+            clear={ clear }
+        >
             {
                 props.children({
                     value: value ?? undefined,
@@ -58,6 +65,6 @@ export default function NumberFieldWrap(props: Props) {
                     clear
                 })
             }
-        </>
+        </FieldProvider>
     );
 }

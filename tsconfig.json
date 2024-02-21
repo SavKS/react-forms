@@ -8,7 +8,7 @@
         "jsx": "react-jsx",
         "outDir": "./dist",
         "declaration": true,
-        "moduleResolution": "NodeNext"
+        "moduleResolution": "Bundler"
     },
     "exclude": [
         "node_modules",

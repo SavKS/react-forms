@@ -10,11 +10,13 @@ import FormWrap from './components/FormWrap.js';
 import NumberFieldWrap from './components/NumberFieldWrap.js';
 import SimpleForm from './components/SimpleForm.js';
 import StringFieldWrap from './components/StringFieldWrap.js';
+import { FieldProvider } from './contexts/FieldContext.js';
 import Form from './Form.js';
 import useFormattedErrors from './hooks/FieldWrap/useFormattedErrors.js';
 import useChangeFormData from './hooks/useChangeFormData.js';
 import useContextualForm from './hooks/useContextualForm.js';
 import useContextualFormStatus from './hooks/useContextualFormStatus.js';
+import useField from './hooks/useField.js';
 import useFieldPath from './hooks/useFieldPath.js';
 import useForm from './hooks/useForm.js';
 import useFormCallback from './hooks/useFormCallback.js';
@@ -30,11 +32,12 @@ import extractErrors from './utils/extractErrors.js';
 import filterErrors from './utils/filterErrors.js';
 import formatErrors from './utils/formatErrors.js';
 
-export type { FieldType, ValidationErrors, ValidationError } from './types.js';
+export type { FieldType, FieldContextValue, ValidationErrors, ValidationError } from './types.js';
 
 export {
     Form,
 
+    useField,
     useFieldPath,
 
     useForm,
@@ -69,6 +72,8 @@ export {
 
     extractErrors,
     filterErrors,
-    formatErrors
+    formatErrors,
+
+    FieldProvider
 };
 

@@ -1,3 +1,5 @@
+export { FieldContextValue } from './contexts/FieldContext';
+
 export type ValidationError = Record<string, string[]>;
 export type ValidationErrors = ValidationError;
 

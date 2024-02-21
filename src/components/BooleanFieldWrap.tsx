@@ -1,9 +1,10 @@
-import { ChangeEvent, useCallback } from 'react';
+import { ChangeEvent, useCallback, ReactNode } from 'react';
 
 import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors.js';
 import useContextualForm from '../hooks/useContextualForm.js';
 import useFieldPath from '../hooks/useFieldPath.js';
 import useFormData from '../hooks/useFormData.js';
+import { FieldProvider } from '../contexts/FieldContext.js';
 
 export type NewValue =
     | boolean
@@ -19,7 +20,7 @@ type Props = {
         error?: string,
         change: (value: NewValue) => void,
         clear: () => void
-    }) => void
+    }) => ReactNode
 };
 
 export default function BooleanFieldWrap(props: Props) {
@@ -49,7 +50,13 @@ export default function BooleanFieldWrap(props: Props) {
     const value = useFormData(form, props.path);
 
     return (
-        <>
+        <FieldProvider
+            path={ normalizedPath }
+            value={ value ?? false }
+            error={ formattedErrors }
+            change={ change }
+            clear={ clear }
+        >
             {
                 props.children({
                     value: value ?? false,
@@ -58,6 +65,6 @@ export default function BooleanFieldWrap(props: Props) {
                     clear
                 })
             }
-        </>
+        </FieldProvider>
     );
 }
