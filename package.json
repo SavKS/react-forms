@@ -1,23 +1,19 @@
 {
     "name": "@savks/react-forms",
     "packageManager": "yarn@4.1.0",
-    "version": "1.7.0",
+    "version": "1.8.1",
     "description": "React forms",
     "license": "MIT",
     "author": "Savks",
     "sideEffects": false,
     "type": "module",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "watch": "tsc --watch",
         "build": "tsc",
         "prepack": "run build",
         "lint": "eslint src"
-    },
-    "exports": {
-        ".": {
-            "types": "./dist/index.d.ts",
-            "default": "./dist/index.js"
-        }
     },
     "dependencies": {
         "immer": "^9.0.21 || ^10.0.0",
