@@ -13,12 +13,12 @@ export type NewValue<T> =
     | null;
 
 type Props<InputValue, OutputValue = InputValue> = {
-    path: string,
+    path?: string,
     typeDefaultValue?: InputValue,
     errors?: string | string[],
     children: (payload: {
-        value: InputValue,
-        error?: string,
+        value: InputValue | undefined,
+        error: string | undefined,
         change: (value: NewValue<OutputValue>) => void,
         clear: () => void
     }) => ReactNode

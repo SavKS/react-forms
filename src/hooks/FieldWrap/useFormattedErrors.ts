@@ -4,10 +4,14 @@ import { useMemo } from 'react';
 import useContextualForm from '../useContextualForm.js';
 import useFormFormattedErrors from '../useFormFormattedErrors.js';
 
-export default (paths: string | string[]) => {
+export default (paths?: string | string[]) => {
     const form = useContextualForm();
 
     const normalizedErrorPaths = useMemo(() => {
+        if (paths === undefined) {
+            return undefined;
+        }
+
         if (typeof paths === 'string') {
             return [ paths ];
         }

@@ -12,10 +12,15 @@ type Props = {
         extract?: boolean,
         isRoot?: boolean
     },
+    extract?: boolean,
+    isRoot?: boolean,
     children: (errors: ValidationErrors | undefined) => ReactNode
 };
 
 export default function ConsumeErrors(props: Props) {
+    const extract = props.extract ?? props.config?.extract;
+    const isRoot = props.isRoot ?? props.config?.isRoot;
+
     const contextForm = useContext(FormContext);
 
     const form = props.form ?? contextForm;
@@ -24,39 +29,66 @@ export default function ConsumeErrors(props: Props) {
         throw new Error('Can\'t resolve form');
     }
 
-    let value = useFormErrors(form, props.path, props.config);
+    const errors = useFormErrors(form, props.path, { isRoot });
 
-    value = useMemo(() => {
-        if (!props.config?.extract || !Object.keys(value).length) {
-            return value;
+    const resultErrors = useMemo(() => {
+        if (!extract || !Object.keys(errors).length) {
+            return errors;
         }
 
-        const extractPattern = (Array.isArray(props.path) ? props.path.join('.') : props.path).replace(
-            /\.\*$/,
-            ''
-        ).replaceAll(/\.\*/g, '.[\\w-]+');
+        const paths = Array.isArray(props.path) ? props.path : [ props.path ];
 
-        if (!extractPattern) {
-            return value;
+        const extractPatterns = paths.reduce<RegExp[]>((carry, path) => {
+            const extractPattern = path.replace(
+                /\.\*$/,
+                ''
+            ).replaceAll(/\.\*/g, '.[\\w-]+');
+
+            if (extractPattern) {
+                carry.push(
+                    new RegExp(`^${ extractPattern }`)
+                );
+            }
+
+            return carry;
+        }, []);
+
+        const result = [];
+
+        for (const [ errorPath, messages ] of Object.entries(errors)) {
+            let isMatched = false;
+
+            for (const extractPattern of extractPatterns) {
+                if (extractPattern.test(errorPath)) {
+                    result.push([
+                        errorPath
+                            .replace(extractPattern, '')
+                            .replace(/\.$/, '')
+                            .replace(/^\./, ''),
+
+                        messages
+                    ]);
+
+                    isMatched = true;
+
+                    break;
+                }
+            }
+
+            if (!isMatched) {
+                result.push([ errorPath, messages ]);
+            }
         }
 
-        return Object.fromEntries(
-            Object.entries(value).map(([ key, value ]) => [
-                key.replace(
-                    new RegExp(`^${ extractPattern }`),
-                    ''
-                ).replace(/\.$/, '').replace(/^\./, ''),
-                value
-            ])
-        );
-    }, [ props.config?.extract, props.path, value ]);
+        return Object.fromEntries(result);
+    }, [ extract, props.path, errors ]);
 
     return (
         <>
             {
                 props.children(
-                    Object.keys(value).length ?
-                        value :
+                    Object.keys(resultErrors).length ?
+                        resultErrors :
                         undefined
                 )
             }

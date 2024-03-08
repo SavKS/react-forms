@@ -5,25 +5,25 @@ import { FormContext } from '../contexts/FormContext.js';
 
 import useScopePath from './useScopePath.js';
 
-function useFieldPath(path: string, isRoot?: boolean): string;
+function useFieldPath(path?: string, isRoot?: boolean): string;
 
-function useFieldPath(path: string[], isRoot?: boolean): string[];
+function useFieldPath(path?: string[], isRoot?: boolean): string[];
 
-function useFieldPath(path: string | string[], isRoot = false): string | string[] {
+function useFieldPath(path?: string | string[], isRoot = false): string | string[] {
     const scope = useScopePath(
         useContext(FormContext)
     );
 
     return useMemoCompare(() => {
         if (isRoot) {
-            return path;
+            return path ?? '';
         }
 
         if (!scope) {
-            return path;
+            return path ?? '';
         }
 
-        if (typeof path === 'string') {
+        if (typeof path === 'string' || path === undefined) {
             return path ? `${ scope }.${ path }` : scope;
         }
 
