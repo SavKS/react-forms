@@ -127,7 +127,7 @@ __metadata:
     "@types/react": "npm:^18.2.64"
     "@types/use-sync-external-store": "npm:^0.0.6"
     eslint: "npm:^8.57.0"
-    immer: "npm:^9.0.21 || ^10.0.0"
+    immer: "npm:^9.0.21"
     is-plain-obj: "npm:^4.1.0"
     typescript: "npm:^5.4.2"
     use-sync-external-store: "npm:^1.2.0"
@@ -1435,10 +1435,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"immer@npm:^9.0.21 || ^10.0.0":
-  version: 10.0.3
-  resolution: "immer@npm:10.0.3"
-  checksum: 10/0be07be2f278bd1988112613648e0cf9a64fc316d5b4817f273b519fbfed0f1714275b041911f0b8c560c199b2e3430824ce620c23262c96c9d4efc9909ff1cc
+"immer@npm:^9.0.21":
+  version: 9.0.21
+  resolution: "immer@npm:9.0.21"
+  checksum: 10/8455d6b4dc8abfe40f06eeec9bcc944d147c81279424c0f927a4d4905ae34e5af19ab6da60bcc700c14f51c452867d7089b3b9236f5a9a2248e39b4a09ee89de
   languageName: node
   linkType: hard
 

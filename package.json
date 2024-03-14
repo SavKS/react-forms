@@ -1,7 +1,7 @@
 {
     "name": "@savks/react-forms",
     "packageManager": "yarn@4.1.0",
-    "version": "1.8.1",
+    "version": "1.9.0",
     "description": "React forms",
     "license": "MIT",
     "author": "Savks",
@@ -16,7 +16,7 @@
         "lint": "eslint src"
     },
     "dependencies": {
-        "immer": "^9.0.21 || ^10.0.0",
+        "immer": "^9.0.21",
         "is-plain-obj": "^4.1.0",
         "use-sync-external-store": "^1.2.0",
         "wildcard-match": "^5.1.3"

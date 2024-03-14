@@ -1,6 +1,7 @@
 import BooleanFieldWrap from './components/BooleanFieldWrap.js';
 import CheckboxGroup from './components/CheckboxGroup.js';
 import ConsumeErrors from './components/ConsumeErrors.js';
+import ConsumeContextualSubmit from './components/ConsumeContextualSubmit.js';
 import ConsumeErrorsAsArray from './components/ConsumeErrorsAsArray.js';
 import ConsumeFieldValue from './components/ConsumeFieldValue.js';
 import ConsumeFormattedErrors from './components/ConsumeFormattedErrors.js';
@@ -68,6 +69,7 @@ export {
     ConsumeErrors,
     ConsumeErrorsAsArray,
     ConsumeFormattedErrors,
+    ConsumeContextualSubmit,
     CheckboxGroup,
 
     extractErrors,
