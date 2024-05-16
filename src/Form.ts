@@ -217,16 +217,13 @@ class Form {
     }
 
     change(path: string, value: any | ((oldValue: any) => any)) {
-        this.#data = produce(
-            this.#data,
-            draft => {
-                const newValue = typeof value === 'function' ?
-                    produce(get(draft, path), value) :
-                    value;
+        this.#data = produce(this.#data, draft => {
+            const newValue = typeof value === 'function' ?
+                value(get(draft, path)) :
+                value;
 
-                set(draft, path, newValue);
-            }
-        );
+            set(draft, path, newValue);
+        });
 
         this.#triggerDataChange();
         this.#toggleAsIsModified(true);
