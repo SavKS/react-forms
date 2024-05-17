@@ -29,6 +29,7 @@ import useFormHasChanges from './hooks/useFormHasChanges.js';
 import useFormIsLocked from './hooks/useFormIsLocked.js';
 import useFormIsModified from './hooks/useFormIsModified.js';
 import useFormIsProcessing from './hooks/useFormIsProcessing.js';
+import useScopePath from './hooks/useScopePath.js';
 import extractErrors from './utils/extractErrors.js';
 import filterErrors from './utils/filterErrors.js';
 import formatErrors from './utils/formatErrors.js';
@@ -52,6 +53,7 @@ export {
     useFormHasChanges,
     useFormCallback,
     useFormattedErrors,
+    useScopePath,
 
     useContextualForm,
     useChangeFormData,
