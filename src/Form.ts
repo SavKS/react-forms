@@ -218,9 +218,7 @@ class Form {
 
     change(path: string, value: any | ((oldValue: any) => any)) {
         this.#data = produce(this.#data, draft => {
-            const newValue = typeof value === 'function' ?
-                value(get(draft, path)) :
-                value;
+            const newValue = typeof value === 'function' ? value(get(draft, path)) : value;
 
             set(draft, path, newValue);
         });

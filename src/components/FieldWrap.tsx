@@ -6,11 +6,7 @@ import useContextualForm from '../hooks/useContextualForm.js';
 import useFieldPath from '../hooks/useFieldPath.js';
 import useFormData from '../hooks/useFormData.js';
 
-export type NewValue<T> =
-    | T
-    | ((value: T) => T)
-    | undefined
-    | null;
+export type NewValue<T> = T | ((value: T) => T) | undefined | null;
 
 type Props<InputValue, OutputValue = InputValue> = {
     path?: string,
