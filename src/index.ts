@@ -1,7 +1,7 @@
 import BooleanFieldWrap from './components/BooleanFieldWrap.js';
 import CheckboxGroup from './components/CheckboxGroup.js';
-import ConsumeErrors from './components/ConsumeErrors.js';
 import ConsumeContextualSubmit from './components/ConsumeContextualSubmit.js';
+import ConsumeErrors from './components/ConsumeErrors.js';
 import ConsumeErrorsAsArray from './components/ConsumeErrorsAsArray.js';
 import ConsumeFieldValue from './components/ConsumeFieldValue.js';
 import ConsumeFormattedErrors from './components/ConsumeFormattedErrors.js';
@@ -15,6 +15,7 @@ import { FieldProvider } from './contexts/FieldContext.js';
 import Form from './Form.js';
 import useFormattedErrors from './hooks/FieldWrap/useFormattedErrors.js';
 import useChangeFormData from './hooks/useChangeFormData.js';
+import useClearFormErrors from './hooks/useClearFormErrors.js';
 import useContextualForm from './hooks/useContextualForm.js';
 import useContextualFormStatus from './hooks/useContextualFormStatus.js';
 import useField from './hooks/useField.js';
@@ -44,6 +45,7 @@ export {
 
     useForm,
     useFormData,
+    useClearFormErrors,
     useFormErrors,
     useFormFormattedErrors,
     useFormErrorsAsArray,

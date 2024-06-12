@@ -1,4 +1,4 @@
-import isEqual from '@savks/not-need-lodash/isEqual';
+import { dequal } from 'dequal';
 import { useCallback } from 'react';
 import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector.js';
 
@@ -35,6 +35,6 @@ export default function useFormErrors(form: Form, names?: string | string[], con
             errors => resolveErrors(errors, resultScope, names),
             [ resultScope, names ]
         ),
-        isEqual
+        dequal
     );
 }

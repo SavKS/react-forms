@@ -1,7 +1,7 @@
 import get from '@savks/not-need-lodash/get';
-import isEqual from '@savks/not-need-lodash/isEqual';
 import set from '@savks/not-need-lodash/set';
 import unset from '@savks/not-need-lodash/unset';
+import { dequal } from 'dequal';
 import { produce } from 'immer';
 import isPlainObject from 'is-plain-obj';
 import wildcardMatch from 'wildcard-match';
@@ -341,7 +341,7 @@ class Form {
             currentValue = get(this.#data, field);
         }
 
-        return !isEqual(oldValue, currentValue);
+        return !dequal(oldValue, currentValue);
     }
 
     #preparePostData(
