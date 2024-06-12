@@ -1,5 +1,5 @@
-import { useMemoCompare } from '@savks/react-helpers';
 import { useContext } from 'react';
+import { useDeepCompareMemo } from 'use-deep-compare';
 
 import { FormContext } from '../contexts/FormContext.js';
 
@@ -14,7 +14,7 @@ function useFieldPath(path?: string | string[], isRoot = false): string | string
         useContext(FormContext)
     );
 
-    return useMemoCompare(() => {
+    return useDeepCompareMemo(() => {
         if (isRoot) {
             return path ?? '';
         }

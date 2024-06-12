@@ -1,5 +1,5 @@
-import { useMemoCompare } from '@savks/react-helpers';
 import { useMemo } from 'react';
+import { useDeepCompareMemo } from 'use-deep-compare';
 
 import useContextualForm from '../useContextualForm.js';
 import useFormFormattedErrors from '../useFormFormattedErrors.js';
@@ -21,6 +21,6 @@ export default (paths?: string | string[]) => {
 
     return useFormFormattedErrors(
         form,
-        useMemoCompare(() => normalizedErrorPaths, [ normalizedErrorPaths ])
+        useDeepCompareMemo(() => normalizedErrorPaths, [ normalizedErrorPaths ])
     );
 };

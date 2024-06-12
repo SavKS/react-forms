@@ -13,8 +13,9 @@ export type ChangeFn = (value: string | undefined) => NewValue;
 export type ChangeEvent = ReactChangeEvent<HTMLInputElement | HTMLTextAreaElement>;
 
 type Props = {
-    path: string,
+    path?: string,
     errors?: string | string[],
+    resetErrors?: boolean,
     children: (payload: {
         value: string,
         error?: string,
@@ -28,7 +29,13 @@ export default function StringFieldWrap(props: Props) {
 
     const normalizedPath = useFieldPath(props.path);
 
-    const formattedErrors = useFormattedErrors(props.errors ?? props.path);
+    const errorPath = props.errors ?? props.path;
+
+    const normalizedErrorPath = useFieldPath(
+        errorPath ? [ errorPath ].flat() : undefined
+    );
+
+    const formattedErrors = useFormattedErrors(errorPath);
 
     const change = useCallback((newValue: NewValue | ChangeEvent | ChangeFn) => {
         if (newValue === null || newValue === undefined) {
@@ -41,7 +48,11 @@ export default function StringFieldWrap(props: Props) {
             }
 
         }
-    }, [ form, normalizedPath ]);
+
+        if (props.resetErrors) {
+            form.clearErrors(normalizedErrorPath);
+        }
+    }, [ form, normalizedErrorPath, normalizedPath, props.resetErrors ]);
 
     const clear = useCallback(() => {
         form.delete(normalizedPath);

@@ -12,6 +12,7 @@ type Props<InputValue, OutputValue = InputValue> = {
     path?: string,
     typeDefaultValue?: InputValue,
     errors?: string | string[],
+    resetErrors?: boolean,
     children: (payload: {
         value: InputValue | undefined,
         error: string | undefined,
@@ -27,7 +28,13 @@ export default function FieldWrap<InputValue, OutputValue = InputValue>(
 
     const normalizedPath = useFieldPath(props.path);
 
-    const formattedErrors = useFormattedErrors(props.errors ?? props.path);
+    const errorPath = props.errors ?? props.path;
+
+    const normalizedErrorPath = useFieldPath(
+        errorPath ? [ errorPath ].flat() : undefined
+    );
+
+    const formattedErrors = useFormattedErrors(errorPath);
 
     const change = useCallback((newValue: NewValue<OutputValue>) => {
         if (newValue === null || newValue === undefined) {
@@ -35,7 +42,11 @@ export default function FieldWrap<InputValue, OutputValue = InputValue>(
         } else {
             form.change(normalizedPath, newValue);
         }
-    }, [ form, normalizedPath ]);
+
+        if (props.resetErrors) {
+            form.clearErrors(normalizedErrorPath);
+        }
+    }, [ form, normalizedErrorPath, normalizedPath, props.resetErrors ]);
 
     const clear = useCallback(() => {
         form.delete(normalizedPath);

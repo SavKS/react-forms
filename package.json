@@ -1,7 +1,7 @@
 {
     "name": "@savks/react-forms",
     "packageManager": "yarn@4.1.0",
-    "version": "1.10.0",
+    "version": "1.11.0",
     "description": "React forms",
     "license": "MIT",
     "author": "Savks",
@@ -18,6 +18,7 @@
     "dependencies": {
         "immer": "^9.0.21",
         "is-plain-obj": "^4.1.0",
+        "use-deep-compare": "^1.2.1",
         "use-sync-external-store": "^1.2.0",
         "wildcard-match": "^5.1.3"
     },

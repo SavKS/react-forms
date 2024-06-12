@@ -4,6 +4,7 @@ import set from '@savks/not-need-lodash/set';
 import unset from '@savks/not-need-lodash/unset';
 import { produce } from 'immer';
 import isPlainObject from 'is-plain-obj';
+import wildcardMatch from 'wildcard-match';
 
 import { ValidationErrors } from './types.js';
 
@@ -216,11 +217,21 @@ class Form {
         return get(this.#data, path, defaultValue);
     }
 
-    change(path: string, value: any | ((oldValue: any) => any)) {
+    change(path: string | undefined, value: any | ((oldValue: any) => any)) {
         this.#data = produce(this.#data, draft => {
-            const newValue = typeof value === 'function' ? value(get(draft, path)) : value;
+            const newValue = (
+                typeof value === 'function'
+                    ? value(
+                        path ? get(draft, path) : draft
+                    )
+                    : value
+            );
 
-            set(draft, path, newValue);
+            if (path) {
+                set(draft, path, newValue);
+            } else {
+                return newValue;
+            }
         });
 
         this.#triggerDataChange();
@@ -281,8 +292,20 @@ class Form {
         this.#triggerErrorsChange();
     }
 
-    clearErrors() {
-        this.#errors = {};
+    clearErrors(path?: string | string[]) {
+        if (path) {
+            const paths = [ path ].flat();
+
+            this.#errors = Object.fromEntries(
+                Object.entries(this.#errors).filter(
+                    ([ key ]) => !paths.some(
+                        path => wildcardMatch(path)(key)
+                    )
+                )
+            );
+        } else {
+            this.#errors = {};
+        }
 
         this.#triggerErrorsChange();
     }
