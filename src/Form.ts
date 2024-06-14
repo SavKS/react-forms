@@ -362,8 +362,24 @@ class Form {
         return this;
     }
 
-    restore() {
-        this.setData(this.#oldData);
+    restore(path?: string | string[]) {
+        if (path) {
+            const paths = [ path ].flat();
+
+            this.setData(
+                produce(this.#data, draft => {
+                    paths.forEach(path => {
+                        const newValue = get(this.#oldData, path);
+
+                        set(draft, path, newValue);
+                    });
+
+                    return draft;
+                })
+            );
+        } else {
+            this.setData(this.#oldData);
+        }
 
         return this;
     }
