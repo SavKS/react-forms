@@ -105,7 +105,7 @@ class Form {
 
     updateConfig(key: string | Config, value?: any) {
         if (typeof key === 'object') {
-            this.#config = value;
+            this.#config = key;
         } else {
             this.#config[ key as keyof Config ] = value;
         }
