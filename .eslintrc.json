@@ -46,7 +46,7 @@
         "react-hooks/exhaustive-deps": [
             "error",
             {
-                "additionalHooks": "useDeepCompareMemo"
+                "additionalHooks": "useDeepCompareMemo|useDeepCompareCallback"
             }
         ]
     },

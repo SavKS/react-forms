@@ -28,9 +28,15 @@ type Subscribers = {
     errors: SubscribersMap<SubscriberTypes['errors']>
 };
 
-type Config = {
+export type Config = {
     dataType?: 'json' | 'formData',
-    dataFilter?: (value: any, key: string) => boolean
+    dataFilter?: (value: any, key: string) => boolean,
+    errorsAutoReset?:
+        | boolean
+        | string
+        | RegExp
+        | Array<string | RegExp>
+        | ((path: string) => boolean)
 };
 
 class Form {
@@ -50,7 +56,8 @@ class Form {
     constructor(initialData = {}, config?: Config) {
         this.#config = {
             dataType: config?.dataType || 'json',
-            dataFilter: config?.dataFilter || (value => value !== undefined && value !== null)
+            dataFilter: config?.dataFilter || (value => value !== undefined && value !== null),
+            errorsAutoReset: config?.errorsAutoReset
         };
 
         this.#subscribers = {
@@ -90,6 +97,18 @@ class Form {
 
     get isModified(): boolean {
         return this.#isModified;
+    }
+
+    updateConfig(config: Config): void;
+
+    updateConfig<K extends keyof Config>(key: K, value: Config[K]): void;
+
+    updateConfig(key: string | Config, value?: any) {
+        if (typeof key === 'object') {
+            this.#config = value;
+        } else {
+            this.#config[ key as keyof Config ] = value;
+        }
     }
 
     onDataChange = (callback: SubscriberTypes['data']) => {
@@ -217,7 +236,11 @@ class Form {
         return get(this.#data, path, defaultValue);
     }
 
-    change(path: string | undefined, value: any | ((oldValue: any) => any)) {
+    change(
+        path: string | undefined,
+        value: any | ((oldValue: any) => any),
+        errorsAutoReset?: Config['errorsAutoReset']
+    ) {
         this.#data = produce(this.#data, draft => {
             const newValue = (
                 typeof value === 'function'
@@ -236,6 +259,16 @@ class Form {
 
         this.#triggerDataChange();
         this.#toggleAsIsModified(true);
+
+        errorsAutoReset ??= this.#config.errorsAutoReset;
+
+        if (errorsAutoReset) {
+            if (errorsAutoReset === true) {
+                this.clearErrors(path ?? undefined);
+            } else {
+                this.clearErrors(errorsAutoReset);
+            }
+        }
     }
 
     fill(data: Record<string, any>) {
@@ -266,6 +299,7 @@ class Form {
         }
 
         this.#triggerDataChange();
+        this.clearErrors();
     }
 
     requestData() {
@@ -292,15 +326,23 @@ class Form {
         this.#triggerErrorsChange();
     }
 
-    clearErrors(path?: string | string[]) {
+    clearErrors(path?: string | RegExp | Array<string | RegExp> | ((path: string) => boolean)) {
         if (path) {
             const paths = [ path ].flat();
 
             this.#errors = Object.fromEntries(
                 Object.entries(this.#errors).filter(
-                    ([ key ]) => !paths.some(
-                        path => wildcardMatch(path)(key)
-                    )
+                    ([ key ]) => !paths.some(path => {
+                        if (typeof path === 'string') {
+                            return wildcardMatch(path)(key);
+                        }
+
+                        if (typeof path === 'function') {
+                            return path(key);
+                        }
+
+                        return path.test(key);
+                    })
                 )
             );
         } else {

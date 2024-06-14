@@ -4,9 +4,13 @@ import Form from '../Form.js';
 
 import useScopePath from './useScopePath.js';
 
-export default function useClearFormErrors(form: Form, path?: string | string[], config?: {
-    isRoot?: boolean
-}) {
+export default function useClearFormErrors(
+    form: Form,
+    path?: string | string[],
+    config?: {
+        isRoot?: boolean
+    }
+) {
     const scope = useScopePath(form);
 
     return useCallback(() => {

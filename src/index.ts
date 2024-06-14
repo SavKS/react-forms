@@ -12,6 +12,7 @@ import NumberFieldWrap from './components/NumberFieldWrap.js';
 import SimpleForm from './components/SimpleForm.js';
 import StringFieldWrap from './components/StringFieldWrap.js';
 import { FieldProvider } from './contexts/FieldContext.js';
+import { Config as FormConfig } from './Form';
 import Form from './Form.js';
 import useFormattedErrors from './hooks/FieldWrap/useFormattedErrors.js';
 import useChangeFormData from './hooks/useChangeFormData.js';
@@ -39,6 +40,7 @@ export type { FieldType, FieldContextValue, ValidationErrors, ValidationError } 
 
 export {
     Form,
+    FormConfig,
 
     useField,
     useFieldPath,
