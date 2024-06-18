@@ -11,6 +11,7 @@ import FormWrap from './components/FormWrap.js';
 import NumberFieldWrap from './components/NumberFieldWrap.js';
 import SimpleForm from './components/SimpleForm.js';
 import StringFieldWrap from './components/StringFieldWrap.js';
+import { useContextualSubmit } from './contexts/ContextualSubmitContext.js';
 import { FieldProvider } from './contexts/FieldContext.js';
 import { Config as FormConfig } from './Form';
 import Form from './Form.js';
@@ -58,6 +59,7 @@ export {
     useFormCallback,
     useFormattedErrors,
     useScopePath,
+    useContextualSubmit,
 
     useContextualForm,
     useChangeFormData,
