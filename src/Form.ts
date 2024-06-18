@@ -39,6 +39,8 @@ export type Config = {
         | ((path: string) => boolean)
 };
 
+const defaultFilterFunction = (value: any) => value !== undefined && value !== null;
+
 class Form {
     displayName: string | undefined;
 
@@ -55,8 +57,8 @@ class Form {
 
     constructor(initialData = {}, config?: Config) {
         this.#config = {
-            dataType: config?.dataType || 'json',
-            dataFilter: config?.dataFilter || (value => value !== undefined && value !== null),
+            dataType: config?.dataType ?? 'json',
+            dataFilter: config?.dataFilter ?? defaultFilterFunction,
             errorsAutoReset: config?.errorsAutoReset
         };
 
@@ -303,7 +305,7 @@ class Form {
     }
 
     requestData() {
-        const filterFunction = this.#config.dataFilter ?? (value => value);
+        const filterFunction = this.#config.dataFilter ?? defaultFilterFunction;
 
         const data = Object.entries(
             JSON.parse(
