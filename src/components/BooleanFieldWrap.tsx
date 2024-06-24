@@ -17,7 +17,7 @@ type Props = {
     errors?: string | string[],
     resetErrors?: boolean,
     children: (payload: {
-        value: boolean | undefined,
+        value: boolean,
         error?: string,
         change: (value: NewValue | ChangeEvent | ChangeFn) => void,
         clear: () => void
