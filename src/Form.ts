@@ -363,8 +363,6 @@ class Form {
             JSON.stringify(this.#data)
         );
 
-        console.log({ remember: this.#initialData });
-
         this.#toggleAsIsModified(false);
 
         return this;
