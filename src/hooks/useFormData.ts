@@ -1,9 +1,11 @@
 import get from '@savks/not-need-lodash/get';
-import { useCallback } from 'react';
-import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector.js';
+import { useCallback, useRef } from 'react';
+import { useSyncExternalStore } from 'react';
 
 import Form from '../Form.js';
 import useFieldPath from '../hooks/useFieldPath.js';
+
+const none = Symbol('none');
 
 function useFormData<ValueType = any>(
     form: Form,
@@ -48,6 +50,8 @@ function useFormData<
         isRoot?: boolean
     }
 ): ValueType {
+    const prevValue = useRef<ValueType | typeof none>(none);
+
     const { defaultValue, isRoot } = config ?? {};
 
     const normalizedPath = useFieldPath(
@@ -55,26 +59,31 @@ function useFormData<
         isRoot
     );
 
-    const getData = useCallback(
-        () => form.data,
-        [ form ]
-    );
+    const getData = useCallback(() => {
+        const scopedData = normalizedPath ? get(form.data, normalizedPath) : form.data;
 
-    return useSyncExternalStoreWithSelector(
-        form.onDataChange,
-        getData,
-        getData,
-        useCallback(data => {
-            const scopedData = normalizedPath ? get(data, normalizedPath) : data;
+        let result: ValueType;
 
-            if (typeof accessor === 'function') {
-                return accessor(scopedData);
+        if (typeof accessor === 'function') {
+            result = accessor(scopedData);
+        } else {
+            result = scopedData ?? defaultValue;
+        }
+
+        if (config?.isEqual) {
+            const current = prevValue.current;
+
+            if (current !== none) {
+                result = config.isEqual(result, current) ? current : result;
             }
+        }
 
-            return scopedData ?? defaultValue;
-        }, [ normalizedPath, defaultValue, accessor ]),
-        config?.isEqual as any
-    );
+        prevValue.current = result;
+
+        return result;
+    }, [ normalizedPath, form.data, accessor, config, defaultValue ]);
+
+    return useSyncExternalStore(form.onDataChange, getData, getData);
 }
 
 export default useFormData;

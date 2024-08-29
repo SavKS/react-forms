@@ -1,13 +1,15 @@
 import { dequal } from 'dequal';
-import { useCallback } from 'react';
-import { useSyncExternalStoreWithSelector } from 'use-sync-external-store/with-selector.js';
+import { useCallback, useRef } from 'react';
+import { useSyncExternalStore } from 'react';
 
 import Form from '../Form.js';
-import { ValidationErrors } from '../types.js';
+import { ValidationError, ValidationErrors } from '../types.js';
 import extractErrors from '../utils/extractErrors.js';
 import filterErrors from '../utils/filterErrors.js';
 
 import useScopePath from './useScopePath.js';
+
+const none = Symbol('none');
 
 const resolveErrors = (errors: ValidationErrors, scope?: string, names?: string | string[]) => {
     const filteredErrors = scope ? extractErrors(errors, scope) : errors;
@@ -18,23 +20,25 @@ const resolveErrors = (errors: ValidationErrors, scope?: string, names?: string 
 export default function useFormErrors(form: Form, names?: string | string[], config?: {
     isRoot?: boolean
 }) {
+    const prevValue = useRef<ValidationError | typeof none>(none);
+
     const scope = useScopePath(form);
 
     const resultScope = config?.isRoot ? undefined : scope;
 
-    const getErrors = useCallback(
-        () => form.errors,
-        [ form ]
-    );
+    const getErrors = useCallback(() => {
+        let errors = resolveErrors(form.errors, resultScope, names);
 
-    return useSyncExternalStoreWithSelector(
-        form.onErrorsChange,
-        getErrors,
-        getErrors,
-        useCallback(
-            errors => resolveErrors(errors, resultScope, names),
-            [ resultScope, names ]
-        ),
-        dequal
-    );
+        const current = prevValue.current;
+
+        if (current !== none) {
+            errors = dequal(errors, current) ? current : errors;
+        }
+
+        prevValue.current = errors;
+
+        return errors;
+    }, [ form.errors, resultScope, names ]);
+
+    return useSyncExternalStore(form.onErrorsChange, getErrors, getErrors);
 }

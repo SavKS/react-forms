@@ -7,19 +7,22 @@
     "author": "Savks",
     "sideEffects": false,
     "type": "module",
-    "main": "dist/index.js",
-    "types": "dist/index.d.ts",
     "scripts": {
         "watch": "tsc --watch",
         "build": "tsc",
         "prepack": "run build",
         "lint": "eslint src"
     },
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "default": "./dist/index.js"
+        }
+    },
     "dependencies": {
-        "immer": "^9.0.21",
+        "immer": "^10.1.1",
         "is-plain-obj": "^4.1.0",
-        "use-deep-compare": "^1.2.1",
-        "use-sync-external-store": "^1.2.0",
+        "use-deep-compare": "^1.3.0",
         "wildcard-match": "^5.1.3"
     },
     "devDependencies": {
@@ -28,10 +31,9 @@
         "@tarik02/eslint-config-type-1": "^0.2.3",
         "@tarik02/eslint-config-type-1-import": "^0.2.3",
         "@tarik02/eslint-config-type-1-react": "^0.2.3",
-        "@types/react": "^18.2.64",
-        "@types/use-sync-external-store": "^0.0.6",
+        "@types/react": "^18.3.4",
         "eslint": "^8.57.0",
-        "typescript": "^5.4.2"
+        "typescript": "^5.5.4"
     },
     "peerDependencies": {
         "@savks/not-need-lodash": "^1.1.6",
