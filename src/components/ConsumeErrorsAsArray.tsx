@@ -1,8 +1,8 @@
 import { ReactNode, useContext } from 'react';
 
-import { FormContext } from '../contexts/FormContext.js';
-import Form from '../Form.js';
-import useFormErrorsAsArray from '../hooks/useFormErrorsAsArray.js';
+import { FormContext } from '../contexts/FormContext';
+import Form from '../Form';
+import useFormErrorsAsArray from '../hooks/useFormErrorsAsArray';
 
 type Props = {
     path: string | string[],

@@ -1,7 +1,7 @@
 import { useCallback, useSyncExternalStore } from 'react';
 
-import Form from '../Form.js';
-import useFieldPath from '../hooks/useFieldPath.js';
+import Form from '../Form';
+import useFieldPath from '../hooks/useFieldPath';
 
 export default function useFormHasChanges(
     form: Form,

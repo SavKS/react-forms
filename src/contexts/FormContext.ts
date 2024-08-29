@@ -1,6 +1,6 @@
 import { createContext } from 'react';
 
-import Form from '../Form.js';
+import Form from '../Form';
 
 export type FormContextValue = Form;
 

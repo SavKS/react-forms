@@ -1,8 +1,8 @@
 import { useCallback } from 'react';
 
-import Form from '../Form.js';
+import Form from '../Form';
 
-import useScopePath from './useScopePath.js';
+import useScopePath from './useScopePath';
 
 export default function useClearFormErrors(
     form: Form,

@@ -1,9 +1,9 @@
 import { ReactNode, useContext, useMemo } from 'react';
 
-import { FormContext } from '../contexts/FormContext.js';
-import Form from '../Form.js';
-import useFormErrors from '../hooks/useFormErrors.js';
-import { ValidationErrors } from '../types.js';
+import { FormContext } from '../contexts/FormContext';
+import Form from '../Form';
+import useFormErrors from '../hooks/useFormErrors';
+import { ValidationErrors } from '../types';
 
 type Props = {
     path: string | string[],

@@ -2,12 +2,12 @@ import { dequal } from 'dequal';
 import { useCallback, useRef } from 'react';
 import { useSyncExternalStore } from 'react';
 
-import Form from '../Form.js';
-import { ValidationError, ValidationErrors } from '../types.js';
-import extractErrors from '../utils/extractErrors.js';
-import filterErrors from '../utils/filterErrors.js';
+import Form from '../Form';
+import { ValidationError, ValidationErrors } from '../types';
+import extractErrors from '../utils/extractErrors';
+import filterErrors from '../utils/filterErrors';
 
-import useScopePath from './useScopePath.js';
+import useScopePath from './useScopePath';
 
 const none = Symbol('none');
 

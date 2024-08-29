@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 
-import { useContextualSubmit } from '../contexts/ContextualSubmitContext.js';
+import { useContextualSubmit } from '../contexts/ContextualSubmitContext';
 
 type Props = {
     className?: string,

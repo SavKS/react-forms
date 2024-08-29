@@ -1,9 +1,9 @@
 import { Draft, produce } from 'immer';
 import { useDeepCompareCallback } from 'use-deep-compare';
 
-import Form from '../Form.js';
+import Form from '../Form';
 
-import useScopePath from './useScopePath.js';
+import useScopePath from './useScopePath';
 
 type Config = {
     errorsAutoReset?: boolean | string | string[],

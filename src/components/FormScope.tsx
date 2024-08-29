@@ -1,8 +1,8 @@
 import { ReactNode, useMemo } from 'react';
 
-import { ScopeContext } from '../contexts/ScopeContext.js';
-import useContextualForm from '../hooks/useContextualForm.js';
-import useFieldPath from '../hooks/useFieldPath.js';
+import { ScopeContext } from '../contexts/ScopeContext';
+import useContextualForm from '../hooks/useContextualForm';
+import useFieldPath from '../hooks/useFieldPath';
 
 type Props = {
     path: string,

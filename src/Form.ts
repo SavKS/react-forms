@@ -6,7 +6,7 @@ import { produce } from 'immer';
 import isPlainObject from 'is-plain-obj';
 import wildcardMatch from 'wildcard-match';
 
-import { ValidationErrors } from './types.js';
+import { ValidationErrors } from './types';
 
 type Subscriber<T> = (newValue: T) => void;
 
@@ -47,7 +47,7 @@ class Form {
     #config: Config;
     #errors: ValidationErrors;
     #data: Record<string, any>;
-    #oldData: Record<string, any>;
+    #initialData: Record<string, any>;
     #files: Record<string, File[]>;
     #isProcessing: boolean;
     #isLocked: boolean;
@@ -72,7 +72,7 @@ class Form {
 
         this.#errors = {};
         this.#data = initialData;
-        this.#oldData = initialData;
+        this.#initialData = initialData;
         this.#files = {};
 
         this.#isProcessing = false;
@@ -83,6 +83,10 @@ class Form {
 
     get data() {
         return this.#data;
+    }
+
+    get initialData() {
+        return this.#initialData;
     }
 
     get errors(): ValidationErrors {
@@ -355,9 +359,11 @@ class Form {
     }
 
     remember() {
-        this.#oldData = JSON.parse(
+        this.#initialData = JSON.parse(
             JSON.stringify(this.#data)
         );
+
+        console.log({ remember: this.#initialData });
 
         this.#toggleAsIsModified(false);
 
@@ -371,7 +377,7 @@ class Form {
             this.setData(
                 produce(this.#data, draft => {
                     paths.forEach(path => {
-                        const newValue = get(this.#oldData, path);
+                        const newValue = get(this.#initialData, path);
 
                         set(draft, path, newValue);
                     });
@@ -380,24 +386,24 @@ class Form {
                 })
             );
         } else {
-            this.setData(this.#oldData);
+            this.setData(this.#initialData);
         }
 
         return this;
     }
 
     hasChanges(field?: string) {
-        if (!this.#oldData) {
+        if (!this.#initialData) {
             return false;
         }
 
         let oldValue, currentValue;
 
         if (!field) {
-            oldValue = this.#oldData;
+            oldValue = this.#initialData;
             currentValue = this.#data;
         } else {
-            oldValue = get(this.#oldData, field);
+            oldValue = get(this.#initialData, field);
             currentValue = get(this.#data, field);
         }
 

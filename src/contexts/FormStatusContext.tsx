@@ -1,8 +1,8 @@
 import { ReactNode, createContext, useMemo } from 'react';
 
-import Form from '../Form.js';
-import useFormIsLocked from '../hooks/useFormIsLocked.js';
-import useFormIsProcessing from '../hooks/useFormIsProcessing.js';
+import Form from '../Form';
+import useFormIsLocked from '../hooks/useFormIsLocked';
+import useFormIsProcessing from '../hooks/useFormIsProcessing';
 
 export type ContextualFormStatusContextValue = {
     isProcessing: boolean,

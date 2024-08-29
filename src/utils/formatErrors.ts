@@ -1,6 +1,6 @@
-import { ValidationErrors } from '../types.js';
+import { ValidationErrors } from '../types';
 
-import filterErrors from './filterErrors.js';
+import filterErrors from './filterErrors';
 
 export default (errors: ValidationErrors, names?: string | string[], delimiter = ' '): string | undefined => {
     const filteredErrors = Object.values(

@@ -1,10 +1,10 @@
 import { ReactNode, useCallback } from 'react';
 
-import { FieldProvider } from '../contexts/FieldContext.js';
-import useFormattedErrors from '../hooks/FieldWrap/useFormattedErrors.js';
-import useContextualForm from '../hooks/useContextualForm.js';
-import useFieldPath from '../hooks/useFieldPath.js';
-import useFormData from '../hooks/useFormData.js';
+import { FieldProvider } from '../contexts/FieldContext';
+import useContextualForm from '../hooks/useContextualForm';
+import useFieldPath from '../hooks/useFieldPath';
+import useFormattedErrors from '../hooks/useFormattedErrors';
+import useFormData from '../hooks/useFormData';
 
 export type NewValue<T> = T | ((value: T) => T) | undefined | null;
 

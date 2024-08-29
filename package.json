@@ -1,7 +1,7 @@
 {
     "name": "@savks/react-forms",
     "packageManager": "yarn@4.1.0",
-    "version": "1.15.2",
+    "version": "2.0.0-beta.1",
     "description": "React forms",
     "license": "MIT",
     "author": "Savks",
@@ -37,7 +37,6 @@
     },
     "peerDependencies": {
         "@savks/not-need-lodash": "^1.1.6",
-        "@savks/react-helpers": "^1.0.0",
         "react": "^18.2.0"
     },
     "volta": {

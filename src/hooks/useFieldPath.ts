@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { useDeepCompareMemo } from 'use-deep-compare';
 
-import { FormContext } from '../contexts/FormContext.js';
+import { FormContext } from '../contexts/FormContext';
 
-import useScopePath from './useScopePath.js';
+import useScopePath from './useScopePath';
 
 function useFieldPath(path?: string, isRoot?: boolean): string;
 

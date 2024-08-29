@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import { FieldContext, FieldContextValue } from '../contexts/FieldContext.js';
+import { FieldContext, FieldContextValue } from '../contexts/FieldContext';
 
 function useField<Value = any, NewValue = Value>(): FieldContextValue<Value, NewValue>;
 

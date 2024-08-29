@@ -2,8 +2,8 @@ import get from '@savks/not-need-lodash/get';
 import { useCallback, useRef } from 'react';
 import { useSyncExternalStore } from 'react';
 
-import Form from '../Form.js';
-import useFieldPath from '../hooks/useFieldPath.js';
+import Form from '../Form';
+import useFieldPath from '../hooks/useFieldPath';
 
 const none = Symbol('none');
 

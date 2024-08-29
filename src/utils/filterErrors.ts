@@ -1,6 +1,6 @@
 import wildcardMatch from 'wildcard-match';
 
-import { ValidationErrors } from '../types.js';
+import { ValidationErrors } from '../types';
 
 export default (errors: ValidationErrors, names?: string | string[]) => {
     const normalizedNames = names ? [ names ].flat() : [];

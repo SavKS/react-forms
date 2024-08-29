@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { useDeepCompareMemo } from 'use-deep-compare';
 
-import Form, { Config as FormConfig } from '../Form.js';
+import Form, { Config as FormConfig } from '../Form';
 
 type Config = { displayName?: string } & FormConfig;
 
