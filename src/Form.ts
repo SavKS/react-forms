@@ -359,9 +359,7 @@ class Form {
     }
 
     remember() {
-        this.#initialData = JSON.parse(
-            JSON.stringify(this.#data)
-        );
+        this.#initialData = structuredClone(this.#data);
 
         this.#toggleAsIsModified(false);
 
