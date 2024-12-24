@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, forwardRef } from 'react';
 
 import { useContextualSubmit } from '../contexts/ContextualSubmitContext';
 
@@ -7,11 +7,12 @@ type Props = {
     children: ReactNode
 } & Omit<React.DetailedHTMLProps<React.FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>, 'onSubmit'>;
 
-export default function SimpleForm(props: Props) {
+const SimpleForm = forwardRef<HTMLFormElement, Props>((props, ref) => {
     const submit = useContextualSubmit();
 
     return (
         <form
+            ref={ ref }
             { ...props }
             onSubmit={ submit }
         >
@@ -20,4 +21,8 @@ export default function SimpleForm(props: Props) {
             <button hidden />
         </form>
     );
-}
+});
+
+SimpleForm.displayName = 'SimpleForm';
+
+export default SimpleForm;
