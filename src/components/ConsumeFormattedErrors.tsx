@@ -5,7 +5,7 @@ import Form from '../Form';
 import useFormFormattedErrors from '../hooks/useFormFormattedErrors';
 
 type Props = {
-    path: string | string[],
+    path?: string | string[],
     form?: Form,
     config?: {
         delimiter?: string,

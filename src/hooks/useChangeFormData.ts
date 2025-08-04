@@ -1,5 +1,6 @@
 import { Draft, produce } from 'immer';
-import { useDeepCompareCallback } from 'use-deep-compare';
+import { useCallback, useRef } from 'react';
+import { useDeepCompareCallback, useDeepCompareEffect } from 'use-deep-compare';
 
 import Form from '../Form';
 
@@ -13,6 +14,11 @@ type Config = {
 export default <T = any>(form: Form, path?: string, config: Config = {}) => {
     const scope = useScopePath(form);
 
+    const getForm = useCallback(
+        () => form,
+        [ form ]
+    );
+
     return useDeepCompareCallback((
         value:
             | Exclude<T | undefined, (...args: any[]) => any>
@@ -25,14 +31,22 @@ export default <T = any>(form: Form, path?: string, config: Config = {}) => {
         if (!normalizedPath) {
             const newValue = typeof value === 'function' ?
                 produce(
-                    form.data,
+                    getForm().data,
                     value as ((oldValue: Draft<T | undefined>) => Draft<T | undefined> | void | undefined)
                 ) :
                 value;
 
-            form.change(undefined, newValue as Record<string, any>, config?.errorsAutoReset);
+            getForm().change(
+                undefined,
+                newValue as Record<string, any>,
+                config?.errorsAutoReset
+            );
         } else {
-            form.change(normalizedPath, value, config?.errorsAutoReset);
+            getForm().change(
+                normalizedPath,
+                value,
+                config?.errorsAutoReset
+            );
         }
-    }, [ config?.errorsAutoReset, config.isRoot, form, path, scope ]);
+    }, [ config?.errorsAutoReset, config.isRoot, getForm, path, scope ]);
 };

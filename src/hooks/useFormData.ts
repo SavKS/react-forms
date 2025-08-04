@@ -26,10 +26,7 @@ function useFormData<ValueType = any>(
     }
 ): ValueType;
 
-function useFormData<
-    ValueType = any,
-    FormData extends Record<string, any> = Record<string, any>
->(
+function useFormData<ValueType = any, FormData = any>(
     form: Form,
     accessor: (data: FormData | undefined) => ValueType,
     config?: {
@@ -38,10 +35,7 @@ function useFormData<
     }
 ): ValueType;
 
-function useFormData<
-    ValueType = any,
-    FormData extends Record<string, any> = Record<string, any>
->(
+function useFormData<ValueType = any, FormData = any>(
     form: Form,
     accessor?: string | ((data: FormData | undefined) => ValueType),
     config?: {
