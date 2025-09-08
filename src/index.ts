@@ -21,7 +21,6 @@ import useClearFormErrors from './hooks/useClearFormErrors';
 import useContextualForm from './hooks/useContextualForm';
 import useForm from './hooks/useForm';
 import useFormattedErrors from './hooks/useFormattedFormErrors';
-import useFormCallback from './hooks/useFormCallback';
 import useFormData from './hooks/useFormData';
 import useFormErrors from './hooks/useFormErrors';
 import useFormErrorsAsArray from './hooks/useFormErrorsAsArray';
@@ -31,9 +30,11 @@ import useFormHasChanges from './hooks/useFormHasChanges';
 import useFormIsLocked from './hooks/useFormIsLocked';
 import useFormIsModified from './hooks/useFormIsModified';
 import useFormIsProcessing from './hooks/useFormIsProcessing';
+import useFormCallback from './hooks/useFormOnProcessed';
 import useFormPath from './hooks/useFormPath';
+import useFormScopedPath from './hooks/useFormScopedPath';
 import useFormStatus from './hooks/useFormStatus';
-import useScopePath from './hooks/useScopePath';
+import usePassedOrContextualForm from './hooks/usePassedOrContextualForm';
 import extractErrors from './utils/extractErrors';
 import filterErrors from './utils/filterErrors';
 import formatErrors from './utils/formatErrors';
@@ -59,8 +60,9 @@ export {
     useFormHasChanges,
     useFormCallback,
     useFormattedErrors,
-    useScopePath,
+    useFormScopedPath,
     useContextualFormSubmit,
+    usePassedOrContextualForm,
 
     useContextualForm,
     useChangeFormData,

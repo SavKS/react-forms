@@ -6,7 +6,7 @@ import { ValidationErrors } from '../types';
 import extractErrors from '../utils/extractErrors';
 import filterErrors from '../utils/filterErrors';
 
-import useScopePath from './useScopePath';
+import useScopePath from './useFormScopedPath';
 
 const none = Symbol('none');
 

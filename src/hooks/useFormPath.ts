@@ -2,7 +2,7 @@ import { useDeepCompareMemo } from 'use-deep-compare';
 
 import Form from '../Form';
 
-import useScopePath from './useScopePath';
+import useScopePath from './useFormScopedPath';
 
 function useFormPath(form: Form, path?: string, isRoot?: boolean): string;
 

@@ -3,7 +3,7 @@ import { Draft, produce } from 'immer';
 import Form from '../Form';
 
 import useEvent from './useEvent';
-import useScopePath from './useScopePath';
+import useScopePath from './useFormScopedPath';
 
 export type ChangeFormDataConfig = {
     errorsAutoReset?: boolean | string | string[],
