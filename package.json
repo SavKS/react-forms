@@ -1,7 +1,7 @@
 {
     "name": "@savks/react-forms",
-    "packageManager": "yarn@4.9.2",
-    "version": "2.0.0-beta.5",
+    "packageManager": "yarn@4.9.4",
+    "version": "3.0.0-beta.2",
     "description": "React forms",
     "license": "MIT",
     "author": "Savks",
@@ -20,10 +20,10 @@
         }
     },
     "dependencies": {
-        "immer": "^10.1.1",
+        "immer": "^10.1.3",
         "is-plain-obj": "^4.1.0",
         "use-deep-compare": "^1.3.0",
-        "wildcard-match": "^5.1.3"
+        "wildcard-match": "^5.1.4"
     },
     "devDependencies": {
         "@savks/not-need-lodash": "^1.3.5",
@@ -31,7 +31,7 @@
         "@tarik02/eslint-config-type-1": "^0.2.3",
         "@tarik02/eslint-config-type-1-import": "^0.2.3",
         "@tarik02/eslint-config-type-1-react": "^0.2.3",
-        "@types/react": "^18.3.4",
+        "@types/react": "^19.1.12",
         "eslint": "^8.57.0",
         "typescript": "^5.5.4"
     },
@@ -40,7 +40,7 @@
         "react": "^18.2.0"
     },
     "volta": {
-        "node": "21.6.2"
+        "node": "22.19.0"
     },
     "files": [
         "dist/**/*"
