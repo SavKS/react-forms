@@ -1,8 +1,7 @@
-import { ChangeEvent as ReactChangeEvent, ReactNode, useCallback } from 'react';
+import { ChangeEvent as ReactChangeEvent, ReactNode } from 'react';
 
 import { FieldProvider } from '../../contexts/FieldContext';
 import Form from '../../Form';
-import useContextualForm from '../../hooks/useContextualForm';
 import useEvent from '../../hooks/useEvent';
 import useFormattedFormErrors from '../../hooks/useFormattedFormErrors';
 import useFormData from '../../hooks/useFormData';

@@ -1,5 +1,3 @@
-import { useCallback } from 'react';
-
 import Form from '../Form';
 
 import useEvent from './useEvent';
