@@ -1,9 +1,8 @@
 import { dequal } from 'dequal';
-import { useCallback, useRef } from 'react';
-import { useSyncExternalStore } from 'react';
+import { useCallback, useRef, useSyncExternalStore } from 'react';
 
 import Form from '../Form';
-import { ValidationError, ValidationErrors } from '../types';
+import { ValidationErrors } from '../types';
 import extractErrors from '../utils/extractErrors';
 import filterErrors from '../utils/filterErrors';
 
@@ -20,7 +19,7 @@ const resolveErrors = (errors: ValidationErrors, scope?: string, names?: string 
 export default function useFormErrors(form: Form, names?: string | string[], config?: {
     isRoot?: boolean
 }) {
-    const prevValue = useRef<ValidationError | typeof none>(none);
+    const prevValue = useRef<ValidationErrors | typeof none>(none);
 
     const scope = useScopePath(form);
 

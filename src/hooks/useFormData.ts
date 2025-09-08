@@ -3,7 +3,8 @@ import { useCallback, useRef } from 'react';
 import { useSyncExternalStore } from 'react';
 
 import Form from '../Form';
-import useFieldPath from '../hooks/useFieldPath';
+
+import useFormPath from './useFormPath';
 
 const none = Symbol('none');
 
@@ -48,7 +49,8 @@ function useFormData<ValueType = any, FormData = any>(
 
     const { defaultValue, isRoot } = config ?? {};
 
-    const normalizedPath = useFieldPath(
+    const normalizedPath = useFormPath(
+        form,
         typeof accessor === 'function' ? '' : (accessor ?? ''),
         isRoot
     );

@@ -16,6 +16,8 @@ const defaultValue = {
 
 export const FormStatusContext = createContext<ContextualFormStatusContextValue>(defaultValue);
 
+FormStatusContext.displayName = 'FormStatusContext';
+
 export function FormStatusContextProvider(props: {
     form: Form,
     children: ReactNode

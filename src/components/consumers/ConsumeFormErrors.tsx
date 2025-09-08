@@ -1,13 +1,13 @@
-import { ReactNode, useContext, useMemo } from 'react';
+import { ReactNode, useMemo } from 'react';
 
-import { FormContext } from '../contexts/FormContext';
-import Form from '../Form';
-import useFormErrors from '../hooks/useFormErrors';
-import { ValidationErrors } from '../types';
+import Form from '../../Form';
+import useFormErrors from '../../hooks/useFormErrors';
+import usePassedOrContextualForm from '../../hooks/usePassedOrContextualForm';
+import { ValidationErrors } from '../../types';
 
-type Props = {
-    path: string | string[],
+export type ConsumeErrorsProps = {
     form?: Form,
+    path: string | string[],
     config?: {
         extract?: boolean,
         isRoot?: boolean
@@ -17,17 +17,11 @@ type Props = {
     children: (errors: ValidationErrors | undefined) => ReactNode
 };
 
-export default function ConsumeErrors(props: Props) {
+export default function ConsumeFormErrors(props: ConsumeErrorsProps) {
     const extract = props.extract ?? props.config?.extract;
     const isRoot = props.isRoot ?? props.config?.isRoot;
 
-    const contextForm = useContext(FormContext);
-
-    const form = props.form ?? contextForm;
-
-    if (!form) {
-        throw new Error('Can\'t resolve form');
-    }
+    const form = usePassedOrContextualForm(props.form);
 
     const errors = useFormErrors(form, props.path, { isRoot });
 

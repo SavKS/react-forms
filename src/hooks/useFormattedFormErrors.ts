@@ -1,12 +1,11 @@
 import { useMemo } from 'react';
 import { useDeepCompareMemo } from 'use-deep-compare';
 
-import useContextualForm from './useContextualForm';
+import Form from '../Form';
+
 import useFormFormattedErrors from './useFormFormattedErrors';
 
-export default (paths?: string | string[]) => {
-    const form = useContextualForm();
-
+export default (form: Form, paths?: string | string[]) => {
     const normalizedErrorPaths = useMemo(() => {
         if (paths === undefined) {
             return undefined;

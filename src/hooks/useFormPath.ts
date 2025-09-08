@@ -1,18 +1,15 @@
-import { useContext } from 'react';
 import { useDeepCompareMemo } from 'use-deep-compare';
 
-import { FormContext } from '../contexts/FormContext';
+import Form from '../Form';
 
 import useScopePath from './useScopePath';
 
-function useFieldPath(path?: string, isRoot?: boolean): string;
+function useFormPath(form: Form, path?: string, isRoot?: boolean): string;
 
-function useFieldPath(path?: string[], isRoot?: boolean): string[];
+function useFormPath(form: Form, path?: string[], isRoot?: boolean): string[];
 
-function useFieldPath(path?: string | string[], isRoot = false): string | string[] {
-    const scope = useScopePath(
-        useContext(FormContext)
-    );
+function useFormPath(form: Form, path?: string | string[], isRoot = false): string | string[] {
+    const scope = useScopePath(form);
 
     return useDeepCompareMemo(() => {
         if (isRoot) {
@@ -33,4 +30,4 @@ function useFieldPath(path?: string | string[], isRoot = false): string | string
     }, [ isRoot, path, scope ]);
 }
 
-export default useFieldPath;
+export default useFormPath;

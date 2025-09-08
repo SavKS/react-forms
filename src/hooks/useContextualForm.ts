@@ -6,7 +6,7 @@ export default function useContextualForm() {
     const formContext = useContext(FormContext);
 
     if (!formContext) {
-        throw new Error('Can\'t resolve form context');
+        throw new Error('Can\'t resolve form context.');
     }
 
     return formContext;

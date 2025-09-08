@@ -1,22 +1,17 @@
 import { useCallback, useSyncExternalStore } from 'react';
 
 import Form from '../Form';
-import useFieldPath from '../hooks/useFieldPath';
 
-export default function useFormHasChanges(
-    form: Form,
-    path?: string,
-    config: {
-        isRoot?: boolean
-    } = {}
-) {
-    const { isRoot } = config;
+import useFormPath from './useFormPath';
 
-    const normalizedPath = useFieldPath(path ?? '', isRoot);
+export default function useFormHasChanges(form: Form, path?: string, config?: {
+    isRoot?: boolean
+}) {
+    const pathFromRoot = useFormPath(form, path ?? '', config?.isRoot);
 
     const getHasChanges = useCallback(
-        () => form.hasChanges(path ? normalizedPath : undefined),
-        [ form, normalizedPath, path ]
+        () => form.hasChanges(path ? pathFromRoot : undefined),
+        [ form, pathFromRoot, path ]
     );
 
     return useSyncExternalStore(

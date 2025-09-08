@@ -2,6 +2,7 @@ import { useCallback } from 'react';
 
 import Form from '../Form';
 
+import useEvent from './useEvent';
 import useScopePath from './useScopePath';
 
 export default function useClearFormErrors(
@@ -13,7 +14,7 @@ export default function useClearFormErrors(
 ) {
     const scope = useScopePath(form);
 
-    return useCallback(() => {
+    return useEvent(() => {
         const resultScope = config?.isRoot ? undefined : scope;
 
         if (!path) {
@@ -27,5 +28,5 @@ export default function useClearFormErrors(
         );
 
         form.clearErrors(paths);
-    }, [ config?.isRoot, form, path, scope ]);
+    });
 }

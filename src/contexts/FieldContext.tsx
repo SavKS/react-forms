@@ -1,32 +1,45 @@
+import get from '@savks/not-need-lodash/get';
 import { ReactNode, createContext, useMemo } from 'react';
+
+import Form from '../Form';
+import useEvent from '../hooks/useEvent';
 
 export type FieldContextValue<Value, NewValue = Value> = {
     path: string,
-    value: Value,
-    error?: string,
-    change: (value: NewValue) => void,
-    clear: () => void
+    valueGetter: () => Value,
+    valueSetter: (value: NewValue) => void,
+    valueClear: () => void,
+    errorPaths?: string[]
 };
 
 export const FieldContext = createContext<FieldContextValue<any> | null>(null);
 
+FieldContext.displayName = 'FieldContext';
+
 export function FieldProvider<Value, NewValue = Value>(props: {
+    form: Form,
     path: string,
-    value: Value,
-    error?: string,
-    change: (value: NewValue) => void,
-    clear: () => void,
+    valueSetter: (value: NewValue) => void,
+    errorPaths?: string[],
     children: ReactNode
 }) {
+    const valueGetter = useEvent(
+        () => get(props.form.data, props.path)
+    );
+
+    const valueClear = useEvent(() => {
+        props.form.delete(props.path);
+    });
+
     const contextValue = useMemo<FieldContextValue<Value, NewValue>>(
         () => ({
             path: props.path,
-            value: props.value,
-            error: props.error,
-            change: props.change,
-            clear: props.clear
+            valueGetter,
+            valueSetter: props.valueSetter,
+            valueClear,
+            errorPaths: props.errorPaths
         }),
-        [ props.change, props.clear, props.error, props.path, props.value ]
+        [ props.path, props.valueSetter, props.errorPaths, valueGetter, valueClear ]
     );
 
     return (

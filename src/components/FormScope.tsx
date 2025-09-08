@@ -1,17 +1,19 @@
 import { ReactNode, useMemo } from 'react';
 
-import { ScopeContext } from '../contexts/ScopeContext';
-import useContextualForm from '../hooks/useContextualForm';
-import useFieldPath from '../hooks/useFieldPath';
+import { FormScopeContext } from '../contexts/FormScopeContext';
+import Form from '../Form';
+import useFormPath from '../hooks/useFormPath';
+import usePassedOrContextualForm from '../hooks/usePassedOrContextualForm';
 
 type Props = {
+    form?: Form,
     path: string,
     children: ReactNode
 };
 
 export default function FormScope(props: Props) {
-    const form = useContextualForm();
-    const path = useFieldPath(props.path);
+    const form = usePassedOrContextualForm(props.form);
+    const path = useFormPath(form, props.path);
 
     const contextValue = useMemo(
         () => ({ form, path }),
@@ -19,6 +21,6 @@ export default function FormScope(props: Props) {
     );
 
     return (
-        <ScopeContext.Provider value={ contextValue }>{ props.children }</ScopeContext.Provider>
+        <FormScopeContext.Provider value={ contextValue }>{ props.children }</FormScopeContext.Provider>
     );
 }

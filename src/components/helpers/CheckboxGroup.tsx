@@ -7,7 +7,7 @@ type Payload = {
     change: (value: Value) => void
 };
 
-type Props<T extends Record<K, string>, K extends string> = {
+export type CheckboxGroupProps<T extends Record<K, string>, K extends string> = {
     value: T[K][] | undefined,
     items: T[],
     keyBy: K,
@@ -15,7 +15,9 @@ type Props<T extends Record<K, string>, K extends string> = {
     onChange: (value: T[K][]) => void
 };
 
-export default function CheckboxGroup<T extends Record<K, string>, K extends string>(props: Props<T, K>) {
+export default function CheckboxGroup<T extends Record<K, string>, K extends string>(
+    props: CheckboxGroupProps<T, K>
+) {
     const statuses = useMemo(
         () => props.items.reduce((carry, item) => {
             carry[ item[ props.keyBy ] ] = !!props.value?.includes(item[ props.keyBy ]);
@@ -26,7 +28,7 @@ export default function CheckboxGroup<T extends Record<K, string>, K extends str
     );
 
     const changeHandlers = useMemo(
-        () => props.items.reduce((carry, item) => {
+        () => props.items.reduce<Record<string, Payload['change']>>((carry, item) => {
             carry[ item[ props.keyBy ] ] = (value: boolean | ChangeEvent<HTMLInputElement>) => {
                 const index = props.value?.indexOf(item[ props.keyBy ]) ?? -1;
 
@@ -44,7 +46,7 @@ export default function CheckboxGroup<T extends Record<K, string>, K extends str
                     if (index !== -1) {
                         props.onChange?.(
                             (props.value ?? []).filter(
-                                (value, valueIndex) => valueIndex !== index
+                                (_value, valueIndex) => valueIndex !== index
                             )
                         );
                     }
@@ -52,7 +54,7 @@ export default function CheckboxGroup<T extends Record<K, string>, K extends str
             };
 
             return carry;
-        }, {} as Record<string, Payload['change']>),
+        }, {}),
         [ props ]
     );
 

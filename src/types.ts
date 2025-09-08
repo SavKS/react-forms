@@ -1,7 +1,6 @@
 export { FieldContextValue } from './contexts/FieldContext';
 
-export type ValidationError = Record<string, string[]>;
-export type ValidationErrors = ValidationError;
+export type ValidationErrors = Record<string, string[]>;
 
 export type FieldType<T = any> = {
     value: T,
