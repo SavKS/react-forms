@@ -1,12 +1,11 @@
 import { dequal } from 'dequal';
-import { useRef, useSyncExternalStore } from 'react';
+import { useCallback, useRef, useSyncExternalStore } from 'react';
 
 import Form from '../Form';
 import { ValidationErrors } from '../types';
 import extractErrors from '../utils/extractErrors';
 import filterErrors from '../utils/filterErrors';
 
-import useEvent from './useEvent';
 import useScopePath from './useFormScopedPath';
 
 const none = Symbol('none');
@@ -26,7 +25,7 @@ export default function useFormErrors(form: Form, names?: string | string[], con
 
     const resultScope = config?.isRoot ? undefined : scope;
 
-    const getErrors = useEvent(() => {
+    const getErrors = useCallback(() => {
         let errors = resolveErrors(form.errors, resultScope, names);
 
         const current = prevValue.current;
@@ -38,7 +37,7 @@ export default function useFormErrors(form: Form, names?: string | string[], con
         prevValue.current = errors;
 
         return errors;
-    });
+    }, [ form.errors, names, resultScope ]);
 
     return useSyncExternalStore(form.onErrorsChange, getErrors, getErrors);
 }

@@ -1,12 +1,11 @@
-import { useSyncExternalStore } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
 import Form from '../Form';
 
-import useEvent from './useEvent';
-
 export default function useFormIsProcessing(form: Form) {
-    const getIsProcessing = useEvent(
-        () => form.isProcessing
+    const getIsProcessing = useCallback(
+        () => form.isProcessing,
+        [ form.isProcessing ]
     );
 
     return useSyncExternalStore(

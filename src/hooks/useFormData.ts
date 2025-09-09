@@ -3,7 +3,6 @@ import { useCallback, useRef, useSyncExternalStore } from 'react';
 
 import Form from '../Form';
 
-import useEvent from './useEvent';
 import useFormPath from './useFormPath';
 
 const none = Symbol('none');
@@ -55,7 +54,7 @@ function useFormData<ValueType = any, FormData = any>(
         isRoot
     );
 
-    const getData = useEvent(() => {
+    const getData = useCallback(() => {
         const scopedData = normalizedPath ? get(form.data, normalizedPath) : form.data;
 
         let result: ValueType;
@@ -77,7 +76,7 @@ function useFormData<ValueType = any, FormData = any>(
         prevValue.current = result;
 
         return result;
-    });
+    }, [ accessor, config, defaultValue, form.data, normalizedPath ]);
 
     return useSyncExternalStore(form.onDataChange, getData, getData);
 }

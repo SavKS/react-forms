@@ -1,8 +1,7 @@
-import { useSyncExternalStore } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
 import Form from '../Form';
 
-import useEvent from './useEvent';
 import useFormPath from './useFormPath';
 
 export default function useFormHasChanges(form: Form, path?: string, config?: {
@@ -10,8 +9,9 @@ export default function useFormHasChanges(form: Form, path?: string, config?: {
 }) {
     const pathFromRoot = useFormPath(form, path ?? '', config?.isRoot);
 
-    const getHasChanges = useEvent(
-        () => form.hasChanges(path ? pathFromRoot : undefined)
+    const getHasChanges = useCallback(
+        () => form.hasChanges(path ? pathFromRoot : undefined),
+        [ form, path, pathFromRoot ]
     );
 
     return useSyncExternalStore(

@@ -1,12 +1,11 @@
-import { useSyncExternalStore } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
 import Form from '../Form';
 
-import useEvent from './useEvent';
-
 export default function useFormIsLocked(form: Form) {
-    const getIsLocked = useEvent(
-        () => form.isLocked
+    const getIsLocked = useCallback(
+        () => form.isLocked,
+        [ form.isLocked ]
     );
 
     return useSyncExternalStore(

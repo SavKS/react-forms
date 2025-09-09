@@ -1,12 +1,11 @@
-import { useSyncExternalStore } from 'react';
+import { useCallback, useSyncExternalStore } from 'react';
 
 import Form from '../Form';
 
-import useEvent from './useEvent';
-
 export default function useFormIsModified(form: Form) {
-    const getIsModified = useEvent(
-        () => form.isModified
+    const getIsModified = useCallback(
+        () => form.isModified,
+        [ form.isModified ]
     );
 
     return useSyncExternalStore(
