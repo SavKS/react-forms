@@ -1,6 +1,6 @@
 import { ChangeEvent as ReactChangeEvent, ReactNode } from 'react';
 
-import { FieldProvider } from '../../contexts/FieldContext';
+import { FormFieldProvider } from '../../contexts/FormFieldContext';
 import Form from '../../Form';
 import useEvent from '../../hooks/useEvent';
 import useFormattedFormErrors from '../../hooks/useFormattedFormErrors';
@@ -71,7 +71,7 @@ export default function NumberFieldWrap(props: Props) {
     }
 
     return (
-        <FieldProvider
+        <FormFieldProvider
             form={ form }
             path={ pathFromRoot }
             valueSetter={ change }
@@ -85,6 +85,6 @@ export default function NumberFieldWrap(props: Props) {
                     clear
                 })
             }
-        </FieldProvider>
+        </FormFieldProvider>
     );
 }

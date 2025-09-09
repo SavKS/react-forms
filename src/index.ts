@@ -13,7 +13,7 @@ import FormWrap from './components/FormWrap';
 import CheckboxGroup from './components/helpers/CheckboxGroup';
 import SimpleForm from './components/helpers/SimpleForm';
 import { useContextualFormSubmit } from './contexts/ContextualFormSubmitContext';
-import { FieldProvider } from './contexts/FieldContext';
+import { FormFieldProvider } from './contexts/FormFieldContext';
 import Form, { Config as FormConfig } from './Form';
 import useChangeFormData from './hooks/useChangeFormData';
 import useClearFormErrors from './hooks/useClearFormErrors';
@@ -38,7 +38,7 @@ import extractErrors from './utils/extractErrors';
 import filterErrors from './utils/filterErrors';
 import formatErrors from './utils/formatErrors';
 
-export type { FieldType, FieldContextValue, ValidationErrors } from './types';
+export type { FieldType, FormFieldContextValue, ValidationErrors } from './types';
 
 export {
     Form,
@@ -87,6 +87,6 @@ export {
     filterErrors,
     formatErrors,
 
-    FieldProvider
+    FormFieldProvider
 };
 

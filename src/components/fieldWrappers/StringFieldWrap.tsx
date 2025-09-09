@@ -1,6 +1,6 @@
 import { ChangeEvent as ReactChangeEvent, ReactNode } from 'react';
 
-import { FieldProvider } from '../../contexts/FieldContext';
+import { FormFieldProvider } from '../../contexts/FormFieldContext';
 import Form from '../../Form';
 import useEvent from '../../hooks/useEvent';
 import useFormattedFormErrors from '../../hooks/useFormattedFormErrors';
@@ -74,7 +74,7 @@ export default function StringFieldWrap<TIsUndefinedAllowed extends boolean = fa
     }
 
     return (
-        <FieldProvider
+        <FormFieldProvider
             form={ form }
             path={ pathFromRoot }
             valueSetter={ change }
@@ -93,6 +93,6 @@ export default function StringFieldWrap<TIsUndefinedAllowed extends boolean = fa
                     clear
                 })
             }
-        </FieldProvider>
+        </FormFieldProvider>
     );
 }

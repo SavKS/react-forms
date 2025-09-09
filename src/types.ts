@@ -1,4 +1,4 @@
-export { FieldContextValue } from './contexts/FieldContext';
+export { FormFieldContextValue } from './contexts/FormFieldContext';
 
 export type ValidationErrors = Record<string, string[]>;
 

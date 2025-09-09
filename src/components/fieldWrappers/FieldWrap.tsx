@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { FieldProvider } from '../../contexts/FieldContext';
+import { FormFieldProvider } from '../../contexts/FormFieldContext';
 import Form from '../../Form';
 import useEvent from '../../hooks/useEvent';
 import useFormattedErrors from '../../hooks/useFormattedFormErrors';
@@ -56,7 +56,7 @@ export default function FieldWrap<InputValue, OutputValue = InputValue>(
     const value = useFormData(form, props.path);
 
     return (
-        <FieldProvider
+        <FormFieldProvider
             form={ form }
             path={ pathFromRoot }
             valueSetter={ change }
@@ -70,6 +70,6 @@ export default function FieldWrap<InputValue, OutputValue = InputValue>(
                     clear
                 })
             }
-        </FieldProvider>
+        </FormFieldProvider>
     );
 }

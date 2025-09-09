@@ -4,7 +4,7 @@ import { ReactNode, createContext, useMemo } from 'react';
 import Form from '../Form';
 import useEvent from '../hooks/useEvent';
 
-export type FieldContextValue<Value, NewValue = Value> = {
+export type FormFieldContextValue<Value, NewValue = Value> = {
     path: string,
     valueGetter: () => Value,
     valueSetter: (value: NewValue) => void,
@@ -12,11 +12,11 @@ export type FieldContextValue<Value, NewValue = Value> = {
     errorPaths?: string[]
 };
 
-export const FieldContext = createContext<FieldContextValue<any> | null>(null);
+export const FormFieldContext = createContext<FormFieldContextValue<any> | null>(null);
 
-FieldContext.displayName = 'FieldContext';
+FormFieldContext.displayName = 'FormFieldContext';
 
-export function FieldProvider<Value, NewValue = Value>(props: {
+export function FormFieldProvider<Value, NewValue = Value>(props: {
     form: Form,
     path: string,
     valueSetter: (value: NewValue) => void,
@@ -31,7 +31,7 @@ export function FieldProvider<Value, NewValue = Value>(props: {
         props.form.delete(props.path);
     });
 
-    const contextValue = useMemo<FieldContextValue<Value, NewValue>>(
+    const contextValue = useMemo<FormFieldContextValue<Value, NewValue>>(
         () => ({
             path: props.path,
             valueGetter,
@@ -43,8 +43,8 @@ export function FieldProvider<Value, NewValue = Value>(props: {
     );
 
     return (
-        <FieldContext.Provider value={ contextValue }>
+        <FormFieldContext.Provider value={ contextValue }>
             { props.children }
-        </FieldContext.Provider>
+        </FormFieldContext.Provider>
     );
 }

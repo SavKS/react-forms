@@ -2,7 +2,6 @@ import { FormEvent, ReactNode, useMemo } from 'react';
 
 import { ContextualFormSubmitContext, ContextualFormSubmitContextValue } from '../contexts/ContextualFormSubmitContext';
 import { FormContext } from '../contexts/FormContext';
-import { FormStatusContextProvider } from '../contexts/FormStatusContext';
 import Form from '../Form';
 import useEvent from '../hooks/useEvent';
 
@@ -33,13 +32,11 @@ export default function FormWrap(props: Props) {
     return (
         <FormContext.Provider value={ props.form }>
             <ContextualFormSubmitContext.Provider value={ submit }>
-                <FormStatusContextProvider form={ props.form }>
-                    {
-                        typeof props.children === 'function' ?
-                            props.children(payload) :
-                            props.children
-                    }
-                </FormStatusContextProvider>
+                {
+                    typeof props.children === 'function' ?
+                        props.children(payload) :
+                        props.children
+                }
             </ContextualFormSubmitContext.Provider>
         </FormContext.Provider>
     );
