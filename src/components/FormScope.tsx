@@ -21,6 +21,6 @@ export default function FormScope(props: Props) {
     );
 
     return (
-        <FormScopeContext.Provider value={ contextValue }>{ props.children }</FormScopeContext.Provider>
+        <FormScopeContext value={ contextValue }>{ props.children }</FormScopeContext>
     );
 }

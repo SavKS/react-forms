@@ -43,8 +43,8 @@ export function FormFieldProvider<Value, NewValue = Value>(props: {
     );
 
     return (
-        <FormFieldContext.Provider value={ contextValue }>
+        <FormFieldContext value={ contextValue }>
             { props.children }
-        </FormFieldContext.Provider>
+        </FormFieldContext>
     );
 }

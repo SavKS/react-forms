@@ -30,14 +30,14 @@ export default function FormWrap(props: Props) {
     );
 
     return (
-        <FormContext.Provider value={ props.form }>
-            <ContextualFormSubmitContext.Provider value={ submit }>
+        <FormContext value={ props.form }>
+            <ContextualFormSubmitContext value={ submit }>
                 {
                     typeof props.children === 'function' ?
                         props.children(payload) :
                         props.children
                 }
-            </ContextualFormSubmitContext.Provider>
-        </FormContext.Provider>
+            </ContextualFormSubmitContext>
+        </FormContext>
     );
 }

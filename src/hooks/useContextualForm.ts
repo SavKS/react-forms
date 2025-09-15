@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { use } from 'react';
 
 import { FormContext } from '../contexts/FormContext';
 import Form from '../Form';
@@ -14,7 +14,7 @@ function useContextualForm(opts?: {
 function useContextualForm(opts?: {
     optional?: boolean
 }) {
-    const formContext = useContext(FormContext);
+    const formContext = use(FormContext);
 
     if (!formContext && !opts?.optional) {
         throw new Error('Can\'t resolve form context.');
