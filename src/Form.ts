@@ -29,7 +29,7 @@ type Subscribers = {
 };
 
 export type Config = {
-    dataType?: 'json' | 'formData',
+    dataType: 'json' | 'formData',
     dataFilter?: (value: any, key: string) => boolean,
     errorsAutoReset?:
         | boolean
@@ -79,6 +79,10 @@ class Form {
         this.#isLocked = false;
 
         this.#isModified = false;
+    }
+
+    get dataType() {
+        return this.#config.dataType;
     }
 
     get data() {
