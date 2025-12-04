@@ -8,11 +8,11 @@ type Payload = {
 };
 
 export type CheckboxGroupProps<T extends Record<K, string>, K extends string> = {
-    value: T[K][] | undefined,
+    value: T[ K ][] | undefined,
     items: T[],
     keyBy: K,
     children: (item: T, payload: Payload) => ReactNode,
-    onChange: (value: T[K][]) => void
+    onChange: (value: T[ K ][]) => void
 };
 
 export default function CheckboxGroup<T extends Record<K, string>, K extends string>(
@@ -28,7 +28,7 @@ export default function CheckboxGroup<T extends Record<K, string>, K extends str
     );
 
     const changeHandlers = useMemo(
-        () => props.items.reduce<Record<string, Payload['change']>>((carry, item) => {
+        () => props.items.reduce<Record<string, Payload[ 'change' ]>>((carry, item) => {
             carry[ item[ props.keyBy ] ] = (value: boolean | ChangeEvent<HTMLInputElement>) => {
                 const index = props.value?.indexOf(item[ props.keyBy ]) ?? -1;
 
